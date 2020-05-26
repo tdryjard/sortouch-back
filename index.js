@@ -3,9 +3,8 @@ require('dotenv').config();
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const api = require('./routes');
-const cool = require('cool-ascii-faces');
 
-const port = process.env.PORT || 8000;
+const port = process.env.PORT || 80;
 
 app.use(cors({origin: 'sortouch-front.herokuapp.com'}))
 
