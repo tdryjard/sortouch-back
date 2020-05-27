@@ -1,0 +1,100 @@
+.contentAddModel{
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+    padding: 20px;
+    z-index: 2;
+    width: 240px;
+    height: 220px;
+    margin-bottom: 50px;
+    background-color: rgb(255, 242, 242);
+    &:hover .shine {
+        display: inline;
+        position: absolute;
+        transform: skewX(20deg) translateX(500px);
+      }
+    &:active .shine {
+        display: inline;
+        position: absolute;
+        transform: skewX(20deg) translateX(500px);
+      }
+    cursor: pointer;
+    box-shadow: rgb(145, 145, 145) 0px 0px 4px;
+    border-radius: 5px;
+}
+
+@keyframes contentAddModel {
+  from{
+    width: 180px;
+    height: 170px;
+  }
+  to{
+    width: 210px;
+    height: 190px;
+  }
+}
+
+.contentAddModelActive{
+  animation: contentAddModel 0.5s;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 20px;
+  z-index: 2;
+  width: 240px;
+  height: 220px;
+  background-color: rgb(255, 242, 242);
+  cursor: pointer;
+  box-shadow: rgb(145, 145, 145) 0px 0px 4px;
+  border-radius: 5px;
+    &:active .shine {
+      display: inline;
+      position: absolute;
+      transform: skewX(20deg) translateX(500px);
+    }
+}
+
+.buttonAddModel{
+  width: 110px;
+  height: 55px;
+  border: none;
+  border-radius: 10px;
+  margin-top: 20px;
+  background-color: white;
+  box-shadow:  0.5px 0.5px 2px 0px #ffffff, 
+  0.5px 0.5px 2px 0px #adadad;
+  font-size: 19px;
+  font-family: 'Sen', sans-serif;
+  text-align: center;
+  cursor: pointer;
+}
+
+.inputAddModel{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 25px;
+  padding: 5px;
+  width: 200px;
+  overflow: hidden;
+  border-radius: 5px;
+  background-color: rgb(253, 253, 253);
+  box-shadow: 0.2px 0.2px 2px 0px rgb(156, 156, 156) inset, -2px -3px 2px 0px white inset;
+  text-align: center;
+}
+
+@media screen and (max-width: 1280px){
+  .contentAddModel{
+    width: 280px;
+    padding: 0;
+    margin-bottom: 50px;
+  }
+  .contentAddModelActive{
+    margin-bottom: 50px;
+  }
+}

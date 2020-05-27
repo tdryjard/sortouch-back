@@ -1,0 +1,197 @@
+.containerAreaChatBot{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    min-height: 100vh;
+    background-image: url('./image/backChatBot2.png');
+    background-color: rgb(252, 248, 252);
+    background-position: top;
+    background-size: cover;
+}
+
+.contentChat{
+    width: 70%;
+    height: 40vh;
+}
+
+.contentQuestionChat{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    width: 70%;
+    height: 40vh;
+}
+
+.contentResponseChatPage{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    width: 40%;
+    margin-left: 10%;
+    margin-bottom: 100px;
+    border-radius: 15px;
+    padding: 10px;
+}
+
+
+
+.contentQuestChat{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    width: 70%;
+}
+
+.textCardQuestChat{
+    font-size: 40px;
+    font-family: 'Sen', sans-serif;
+    width: 100%;
+}
+
+.imgQuestChat{
+    height: 250px;
+    width: auto;
+    position: absolute;
+    margin-bottom: 20px;
+    left: 20%;
+}
+
+.contentTextQuestChat{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+    color: rgb(53, 53, 53);
+}
+
+.containerCardResChat{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(252, 244, 245);
+    box-shadow: -5px -4px 4px 0px #ffffff, 2px 2px 9px 0px #c9c9c9;
+    margin: 15px;
+    padding: 10px 20px 10px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+}
+
+.containerCardResChat:hover{
+    background-color: rgb(252, 235, 235);
+}
+
+.containerCardResChat:active{
+    box-shadow: inset -5px -4px 4px 0px #c9c9c9, inset 2px 2px 9px 0px #ffffff;
+}
+
+.containerCardResChatActive{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(252, 235, 235);
+    box-shadow: inset 1px 1px 4px 0px #868686, inset -3px -3px 2px 0px #ffffff;
+    margin: 15px;
+    padding: 10px 20px 10px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+}
+
+.contentQuestionChatDecale{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    width: 70%;
+    margin-left: 10%;
+}
+
+.textCardResChat{
+    font-family: 'Sen', sans-serif;
+}
+
+.textQuestChatbot{
+    font-family: 'Sen', sans-serif;
+    font-size: 30px;
+}
+
+@media screen and (max-width: 1280px){
+    .textQuestChatbot{
+        font-size: 25px;
+    }
+    .contentResponseChatPage{
+        width: 75%;
+        margin-left: 0;
+        max-height: 50%;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: flex-end;
+    }
+    .textCardResChat{
+        font-size: 15px;
+    }
+    .containerCardResChat{
+        width: 80%;
+        text-align: center;
+        margin-left: 0;
+    }
+    .containerCardResChatActive{
+        width: 80%;
+        text-align: center;
+        margin-left: 0;
+    }
+    .contentQuestionChatDecale{
+        margin-left: 0;
+        width: 100%;
+    }
+    .contentQuestionChat{
+        margin-left: 0%;
+        width: 100%;
+    }
+    .textCardQuestChat{
+        font-size: 25px;
+    }
+    .containerAreaChatBot{
+        background-color: white;
+        background-image: url('./image/backMobil.png');
+        background-size: 125%;
+    }
+    .contentTextQuestChat{
+        width: 85%;
+        margin-left: 5%;
+    }
+    .containerForm{
+        width: 100%;
+        margin: 0;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+        height: 100%;
+        margin-top: 30px;
+        padding: 0;
+    }
+    .contentHeadForm{
+        flex-direction: column;
+    }
+    .imgForm{
+        display: none;
+    }
+    .contentDestinationChat{
+        width: 100%;
+        height: 550px;
+    }
+    .phoneForm{
+        margin-left: 0;
+        width: 60%
+    }
+    .contentHeadForm{
+        width: 100%;
+    }
+}

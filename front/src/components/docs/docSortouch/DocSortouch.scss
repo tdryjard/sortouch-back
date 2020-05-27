@@ -1,0 +1,194 @@
+.contentDocSortouch{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    position: relative;
+    background-color: rgb(254, 249, 249);
+    width: 80%;
+    padding: 50px;
+    border-radius: 15px;
+    margin-top: 35px;
+    margin-bottom: 35px;
+}
+
+.numberStepDoc{
+    font-size: 100px;
+    color: rgb(236, 167, 254);
+    font-family: 'Sen', sans-serif;
+}
+
+.titleStepDoc{
+    font-size: 30px;
+    font-family: 'Sen', sans-serif;
+    position: absolute;
+    top: 20px;
+    color: rgb(37, 37, 37);
+}
+
+.onContentDocFirst{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+}
+
+.onContentDoc{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 90%;
+    margin-top: 80px;
+}
+
+.orDocSortouch{
+    font-size: 30px;
+    font-family: 'Sen', sans-serif;
+    margin-left: 50px;
+}
+
+.textDocSortouch{
+    font-size: 20px;
+    font-family: 'Sen', sans-serif;
+}
+
+.textDocSortouchLast{
+    font-size: 20px;
+    font-family: 'Sen', sans-serif;
+}
+
+.imgDocSortouch{
+    height: 200px;
+    width: auto;
+    box-shadow: 2px 1px 11px rgb(192, 192, 192);
+    margin: 25px;
+}
+
+.imgDocSortouchDonnee{
+    height: 400px;
+    width: auto;
+    box-shadow: 2px 1px 11px rgb(192, 192, 192);
+    margin: 25px;
+}
+
+.imgDocSortouchCategory{
+    height: 600px;
+    width: auto;
+    box-shadow: 2px 1px 11px rgb(192, 192, 192);
+    margin: 25px;
+    border-radius: 8px;
+}
+
+.containerImgDoc{
+    display: flex;
+    flex-direction: row;
+}
+
+.inscriptionDocSortouch{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    width: 120px;
+    background-color: rgb(255, 169, 255);
+    color: white;
+    border: 2px solid rgb(255, 169, 255);
+    border-radius: 10px;
+    font-size: 25px;
+    font-family: 'Sen', sans-serif;
+    text-decoration: none;
+    padding: 5px 30px 5px 30px;
+    margin-left: 50px;
+}
+.connexionDocSortouch{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(255, 255, 255);
+    color: rgb(255, 169, 255);
+    border: 2px solid rgb(255, 169, 255);
+    border-radius: 10px;
+    font-size: 20px;
+    font-family: 'Sen', sans-serif;
+    text-decoration: none;
+    padding: 5px 10px 5px 10px;
+    width: 150px;
+    height: 50px;
+    margin-left: 20px;
+}
+
+@media screen and (max-width: 1200px){
+    .onContentDocFirst{
+        flex-direction: column;
+    }
+    .onContentDoc{
+        margin-left: 20px;
+    }
+    .orDocSortouch{
+        margin-left: 0;
+    }
+    .contentDocSortouch{
+        width: 70%;
+        padding: 10%;
+        margin-top: 110px;
+        margin-bottom: 10px;
+    }
+    .burgerIcon{
+        z-index: 10;
+    }
+    .titleStepDoc{
+        font-size: 25px;
+    }
+    .inscriptionDocSortouch{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 50px;
+        width: 120px;
+        background-color: rgb(255, 169, 255);
+        color: white;
+        border: 2px solid rgb(255, 169, 255);
+        border-radius: 10px;
+        font-size: 25px;
+        font-family: 'Sen', sans-serif;
+        text-decoration: none;
+        padding: 5px 30px 5px 30px;
+        margin-left: 20px;
+    }
+    .connexionDocSortouch{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgb(255, 255, 255);
+        color: rgb(255, 169, 255);
+        border: 2px solid rgb(255, 169, 255);
+        border-radius: 10px;
+        font-size: 20px;
+        font-family: 'Sen', sans-serif;
+        text-decoration: none;
+        padding: 5px 10px 5px 10px;
+        width: 150px;
+        height: 50px;
+        margin-left: 20px;
+        margin-top: 50px;
+    }
+    .containerImgDoc{
+        flex-direction: column;
+    }
+    .imgDocSortouchCategory{
+        height: 400px;
+        width: auto;
+    }
+    .imgDocSortouchCategory{
+        width: 250px;
+        height: auto;
+    }
+    .imgDocSortouchDonnee{
+        width: 250px;
+        height: auto;
+    }
+    .textDocSortouchLast{
+        margin-top: 80px;
+    }
+}

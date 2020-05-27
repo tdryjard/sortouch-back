@@ -1,0 +1,433 @@
+.contentCardModel{
+    z-index: 2;
+    width: 280px;
+    height: 260px;
+    box-shadow: rgb(199, 199, 199) 0px 0px 5px;
+    border-radius: 5px;
+    margin-right: 50px;
+    margin-bottom: 50px;
+    &:hover .contentNewMessageModel{
+        display: none;
+    }
+    &:hover .buttonSelectModel{
+        animation: buttonModel 0.5s;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 50px;
+        width: 60%;
+        border: 3px solid rgb(78, 78, 78);
+        border-radius: 15px;
+        font-weight: 700;
+        text-decoration: none;
+        color: rgb(82, 82, 82);
+        font-family: 'Sen', sans-serif;
+        margin-top: 20px;
+        background-color: #fdf2f2;
+        cursor: pointer;
+    }
+    &:hover .buttonSelectModel:hover{
+        background-color: rgb(77, 77, 77);
+        color: white;
+    }
+    &:hover .headCardModel{
+        animation: headCard 0.5s;
+        height: 0%;
+    }
+    &:hover .infoCardModel{
+        animation: transInfo 0.5s;
+        height: 100%;
+    }
+    &:hover .optionIcon{
+        animation: iconOption 0.5s;
+        display: block;
+        height: 30px;
+        width: auto;
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        cursor: pointer;
+    }
+    &:hover .containerLink{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
+        background-color: rgb(252, 252, 252);
+        border-radius: 30px;
+        height: 30px;
+        position: relative;
+        margin-bottom: 10px;
+        padding: 0px 0px 0px 15px;
+        border-style: solid none solid dashed;
+        border-color: rgb(68, 68, 68);
+        border-width: 3px;
+        animation: containerLink 1s;
+    }
+    &:hover .containerOption{
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        width: 100%;
+    }
+}
+
+@keyframes containerLink{
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 100%;
+    }
+}
+
+.contentCardModel:hover{
+    animation: contentCard 0.5s;
+    box-shadow: rgb(207, 207, 207) 1px 1px 10px;
+}
+
+@keyframes contentCard {
+    from{
+        box-shadow: rgb(224, 224, 224) 0.5px 0.5px 6px;
+    }
+    to{
+        box-shadow: rgb(207, 207, 207) 0.5px 0.5px 10px;
+    }
+}
+
+@keyframes transInfo {
+    from{
+        height: 60%;
+    }
+    to{
+        height: 100%;
+    }
+}
+
+@keyframes headCard{
+    from{
+        height: 40%;
+    }
+    to{
+        height: 0%;
+    }
+}
+
+@keyframes iconOption{
+    0%{
+        opacity: 0;
+    }
+    75%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 100%;
+    }
+}
+
+@keyframes buttonModel{
+    0%{
+        opacity: 0;
+    }
+    75%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 100%;
+    }
+}
+
+.contentCardModelFirst{
+    z-index: 2;
+    width: 280px;
+    height: 260px;
+    box-shadow: rgb(199, 199, 199) 0px 0px 5px;
+    border-radius: 5px;
+    margin-right: 50px;
+    margin-bottom: 50px;
+    margin-left: 50px;
+    &:hover .contentNewMessageModel{
+        display: none;
+    }
+    &:hover .buttonSelectModel{
+        animation: buttonModel 0.5s;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 50px;
+        width: 60%;
+        border: 3px solid rgb(78, 78, 78);
+        border-radius: 15px;
+        font-weight: 700;
+        text-decoration: none;
+        color: rgb(82, 82, 82);
+        font-family: 'Sen', sans-serif;
+        margin-top: 20px;
+        background-color: #fdf2f2;
+        cursor: pointer;
+    }
+    &:hover .buttonSelectModel:hover{
+        background-color: rgb(77, 77, 77);
+        color: white;
+    }
+    &:hover .headCardModel{
+        animation: headCard 0.5s;
+        height: 0%;
+    }
+    &:hover .infoCardModel{
+        animation: transInfo 0.5s;
+        height: 100%;
+    }
+    &:hover .optionIcon{
+        animation: iconOption 0.5s;
+        display: block;
+        height: 30px;
+        width: auto;
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        cursor: pointer;
+    }
+    &:hover .containerLink{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
+        background-color: rgb(252, 252, 252);
+        border-radius: 30px;
+        height: 30px;
+        position: relative;
+        margin-bottom: 10px;
+        padding: 0px 0px 0px 15px;
+        border-style: solid none solid dashed;
+        border-color: rgb(68, 68, 68);
+        border-width: 3px;
+        animation: containerLink 1s;
+    }
+    &:hover .containerOption{
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        width: 100%;
+    }
+}
+
+.headCardModel{
+    width: 100%;
+    height: 40%;
+}
+
+.infoCardModel{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+    width: 90%;
+    padding-left: 5%;
+    padding-right: 5%;
+    height: 60%;
+    background-color: #fdf2f2;
+}
+
+.contentNameCardModel{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    height: 60px;
+    margin: 0;
+}
+
+.nameCardModel{
+    margin: 0;
+    font-size: 25px;
+    margin-top: 5px;
+    color: rgb(53, 53, 53);
+    font-weight: 500;
+    font-family: 'Sen', sans-serif;
+    width: 100%;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.buttonSelectModel{
+    display: none;
+}
+
+.optionIcon{
+    display: none;
+}
+
+.contentCardModelOptionFirst{
+    animation: cardOption 0.5s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 280px;
+    height: 260px;
+    margin-left: 50px;
+    margin-right: 50px;
+    background-color: #fdf2f2;
+    box-shadow: rgb(199, 199, 199) 0px 0px 5px;
+    position: relative;
+}
+
+.contentCardModelOption{
+    animation: cardOption 0.5s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 280px;
+    height: 260px;
+    margin-right: 50px;
+    background-color: #fdf2f2;
+    box-shadow: rgb(199, 199, 199) 0px 0px 5px;
+    position: relative;
+}
+
+@keyframes cardOption {
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 100%;
+    }
+}
+
+.deleteButton{
+    background-color: #fdf2f2;
+    color: rgb(255, 101, 101);
+    font-family: 'Sen', sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+    width: 150px;
+    height: 50px;
+    border: 2px rgb(255, 101, 101) solid;
+    border-radius: 10px;
+    margin-top: 25px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.deleteButton:hover{
+    background-color: rgb(255, 101, 101);
+    color: white;
+}
+
+.buttonUpdateModel{
+    background-color: #fdf2f2;
+    border: none;
+    border-radius: 10px;
+    width: 150px;
+    height: 50px;
+    color: rgb(39, 39, 39);
+    border: 2px rgb(39, 39, 39) solid;
+    font-family: 'Sen', sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+    margin-top: 15px;
+    cursor: pointer;
+}
+
+.buttonUpdateModel:hover{
+    background-color: rgb(39, 39, 39);
+    color: white;
+}
+
+.croixIcon{
+    height: 40px;
+    width: auto;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    cursor: pointer;
+}
+
+.containerLink{
+    display: none
+}
+
+.textLink{
+    font-size: 16px;
+    font-family: 'Sen', sans-serif;
+    border: none;
+    background-color: rgb(68, 68, 68);
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+    width: 150px;
+    padding-left: 5px;
+    padding-right: 10px;
+    height: 105%;
+    color: white;
+}
+
+.linkIcon{
+    width: 25px;
+    height: auto;
+    margin-right: 15px;
+    cursor: pointer;
+}
+
+.messageCopied{
+    font-size: 15px;
+    margin-right: 5px;
+}
+
+button:focus {outline:0;}
+
+
+img:focus {outline:0;}
+
+
+input:focus {outline:0;}
+
+.contentNewMessageModel{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+.newMessageIconModel{
+    height: 60px;
+    width: auto;
+}
+
+.nbNewMessageModel{
+    font-size: 28px;
+    font-family: 'Sen', sans-serif;
+    color: rgb(222, 182, 232);
+    margin: 0;
+    font-weight: 600;
+}
+
+.containerHeadoptionCardModel{
+    display: flex;
+    justify-content: start;
+    align-items: flex-start;
+    flex-direction: row;
+    width: 100%;
+}
+
+.modelId{
+    position: relative;
+    font-family: 'Sen', sans-serif;
+    margin-top: 8px;
+    font-size: 20px;
+    margin-bottom: 25px;
+    margin-left: 10%;
+}
+
+@media screen and (max-width: 1280px){
+    .contentCardModelFirst{
+        margin: 0;
+        margin-bottom: 20px;
+    }
+}

@@ -1,0 +1,131 @@
+.containerNav{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 95%;
+    padding: 15px;
+    margin-top: 20px;
+    position: absolute;
+    top: 0;
+}
+
+.textNavbar{
+    text-decoration: none;
+    font-size: 25px;
+    font-family: 'Sen', sans-serif;
+    text-decoration: none;
+    margin-left: 35px;
+}
+
+.textNavbar:hover{
+    text-decoration: rgb(114, 0, 104);
+}
+
+.connexionNavbar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    width: 120px;
+    background-color: none;
+    color: rgb(255, 92, 255);
+    border: 2px solid rgb(255, 92, 255);
+    border-radius: 10px;
+    font-size: 25px;
+    font-family: 'Sen', sans-serif;
+    text-decoration: none;
+    padding: 5px 30px 5px 30px;
+}
+
+.subNavbar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    width: 120px;
+    background-color: rgb(255, 169, 255);
+    color: white;
+    border: 2px solid rgb(255, 169, 255);
+    border-radius: 10px;
+    font-size: 25px;
+    font-family: 'Sen', sans-serif;
+    text-decoration: none;
+    padding: 5px 30px 5px 30px;
+    margin-left: 50px;
+}
+
+.contentConnect{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-direction: row;
+    width: 50%;
+    height: 100%;
+}
+
+.containerNavConnect{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    position: absolute;
+}
+
+.linkNavbar{
+    font-family: 'Sen', sans-serif;
+    font-size: 25px;
+    color: rgb(31, 31, 31);
+    text-decoration: none;
+    margin-left: 60px;
+    margin-bottom: 10px;
+}
+
+.linkNavbar:hover{
+    border-bottom: 2px rgb(63, 63, 63) solid;
+}
+
+.linkNavbarActive{
+    font-family: 'Sen', sans-serif;
+    font-size: 25px;
+    color: rgb(31, 31, 31);
+    text-decoration: none;
+    border-bottom: 2px rgb(63, 63, 63) solid;
+    margin-left: 60px;
+    margin-bottom: 10px;
+}
+
+@media screen and (max-width: 1280px){
+    .connexionNavbar{
+        width: 25%;
+        height: 40px;
+        font-size: 20px;
+    }
+    .subNavbar{
+        width: 25%;
+        height: 40px;
+        font-size: 20px;
+        margin-left: 20px;
+    }
+    .contentConnect{
+        width: 100%;
+    }
+    .linkNavbar{
+        font-size: 15px;
+        margin-left: 10px;
+        margin-right: 10px;
+        text-align: center;
+    }
+    .linkNavbarActive{
+        text-align: center;
+        font-size: 15px;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+    .containerNav{
+        width: 100%;
+        margin-top: 25px;
+        padding: 0;
+    }
+}

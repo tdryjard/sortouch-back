@@ -1,0 +1,65 @@
+.containerQuestion{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    width: 80%;
+    background-color: #fcf4f5;
+    border-radius: 10px;
+    box-shadow:  -4px -3px 3px 0px #ffffff, 
+    2px 2px 5px 0px #adadad;
+    margin-bottom: 20px;
+    margin-top: 30px;
+}
+
+.contentQuestionInput{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    min-height: 30px;
+    width: 85%;
+    background-color: rgb(255, 255, 255);
+    border: none;
+    box-shadow: 2px 2px 2px 0px rgb(156, 156, 156) inset, -1px -2px 1px 0px white inset;
+    padding: 5px;
+    text-align: center;
+    font-size: 15px;
+    margin-top: 20px;
+    font-family: 'Sen', sans-serif;
+}
+
+.validQuestion{
+    height: 60px;
+    width: 130px;
+    border: none;
+    background-color: rgb(250, 250, 250);
+    border-radius: 10px;
+    box-shadow:  -4px -3px 3px 0px #ffffff, 
+    2px 2px 5px 0px #adadad;
+    margin-top: 30px;
+    font-size: 20px;
+    margin-bottom: 20px;
+    outline-style: none;
+    font-family: 'Sen', sans-serif;
+    cursor: pointer;
+}
+
+.validQuestion:active{
+    box-shadow:  inset -4px -3px 3px 0px #ffffff, 
+    inset 2px 2px 5px 0px #adadad;
+    outline-style: none;
+}
+
+.validQuestion::placeholder{
+    text-align: center;
+
+}
+
+.textAddingQuestion{
+    font-size: 25px;
+    margin-bottom: 0;
+    color: rgb(80, 80, 80);
+    letter-spacing: 1px;
+    font-family: 'Sen', sans-serif;
+}

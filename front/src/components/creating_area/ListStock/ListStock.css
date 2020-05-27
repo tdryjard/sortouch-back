@@ -1,0 +1,153 @@
+.containerListStock{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-direction: column;
+    width: 450px;
+    height: 80%;
+    background-color: none;
+    overflow: auto;
+    position: fixed;
+    left: 65%;
+}
+
+.containerList{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-direction: column;
+    width: 90%;
+    height: 60vh;
+    border-radius: 15px;
+    background-color: rgb(252, 252, 252);
+    box-shadow: 3px 3px 9px 0px rgb(156, 156, 156) inset, -5px -5px 3px 0px white inset;
+    overflow: auto;
+}
+
+.textHeadList{
+    font-size: 20px;
+    font-family: 'Sen', sans-serif;
+    text-align: center;
+}
+
+.buttonQuestion{
+    height: 50px;
+    width: 100px;
+    border: none;
+    background-color: rgb(252, 252, 252);
+    border-radius: 10px;
+    box-shadow:  -4px -3px 3px 0px #ffffff, 
+    2px 2px 5px 0px #adadad;
+    font-size: 15px;
+    outline-style: none;
+    color: rgb(104, 104, 104);
+    font-family: 'Sen', sans-serif;
+    margin-left: 5%;
+    margin-right: 5%;
+    cursor: pointer;
+}
+
+.buttonResponse{
+    height: 50px;
+    width: 100px;
+    border: none;
+    background-color: rgb(252, 252, 252);
+    border-radius: 10px;
+    box-shadow:  -4px -3px 3px 0px #ffffff, 
+    2px 2px 5px 0px #adadad;
+    font-size: 15px;
+    outline-style: none;
+    color: rgb(104, 104, 104);
+    font-family: 'Sen', sans-serif;
+    margin-left: 5%;
+    margin-right: 5%;
+    cursor: pointer;
+}
+
+.buttonDestination{
+    height: 50px;
+    width: 100px;
+    border: none;
+    background-color: rgb(252, 252, 252);
+    border-radius: 10px;
+    box-shadow:  -4px -3px 3px 0px #ffffff, 
+    2px 2px 5px 0px #adadad;
+    font-size: 15px;
+    outline-style: none;
+    font-family: 'Sen', sans-serif;
+    color: rgb(104, 104, 104);
+    margin-left: 5%;
+    margin-right: 5%;
+    cursor: pointer;
+}
+
+.containerButtonSection{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+.buttonQuestionActive{
+    height: 50px;
+    width: 100px;
+    border: none;
+    background-color: rgb(250, 250, 250);
+    border-radius: 10px;
+    font-size: 15px;
+    outline-style: none;
+    color: rgb(63, 63, 63);
+    font-family: 'Sen', sans-serif;
+    margin-left: 5%;
+    margin-right: 5%;
+    box-shadow:  inset -4px -3px 3px 0px #ffffff, 
+    inset 2px 2px 5px 0px #adadad;
+    cursor: pointer;
+}
+
+.buttonResponseActive{
+    height: 50px;
+    width: 100px;
+    border: none;
+    background-color: rgb(250, 250, 250);
+    border-radius: 10px;
+    font-size: 15px;
+    outline-style: none;
+    color: rgb(63, 63, 63);
+    font-family: 'Sen', sans-serif;
+    margin-left: 5%;
+    margin-right: 5%;
+    box-shadow:  inset -4px -3px 3px 0px #ffffff, 
+    inset 2px 2px 5px 0px #adadad;
+    cursor: pointer;
+}
+
+.buttonDestinationActive{
+    height: 50px;
+    width: 100px;
+    border: none;
+    background-color: rgb(250, 250, 250);
+    border-radius: 10px;
+    font-size: 15px;
+    outline-style: none;
+    font-family: 'Sen', sans-serif;
+    color: rgb(63, 63, 63);
+    margin-left: 5%;
+    margin-right: 5%;
+    box-shadow:  inset -4px -3px 3px 0px #ffffff, 
+    inset 2px 2px 5px 0px #adadad;
+    cursor: pointer;
+}
+
+.headList{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #f8f8f8;
+    width: 90%;
+    margin-bottom: 50px;
+    border-radius: 15px;
+    padding-bottom: 10px;
+    box-shadow: -3px -2px 2px 0px #ffffff, 2px 2px 5px 0px #adadad;
+}

@@ -1,0 +1,212 @@
+.messageContainer{
+    width: 60%;
+    height: 80vh;
+    border-radius: 15px;
+    background-color: white;
+    box-shadow:  0px 2px 5px 0px #adadad;
+    margin-top: 5vh;
+}
+
+.littleContentMail{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+    border-bottom: inset 2.5px rgb(255, 255, 255);
+    background-color: #fff4f4;
+    cursor: pointer;
+}
+
+.littleContentMailNoHover{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+    border-bottom: inset 2.5px rgb(255, 255, 255);
+    background-color: #fff4f4;
+    cursor: pointer;
+}
+
+.littleContentMailUnview{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+    border-bottom: inset 2.5px rgb(255, 255, 255);
+    background-color: #f9d0ff;
+    cursor: pointer;
+}
+
+.littleContentMail:hover{
+    background-color: #ffe7e7;
+}
+
+.contentLittleMessageMail{
+    width: 85%;
+}
+
+.littleMessageMail{
+    margin-left: 30px;
+    font-family: 'Sen', sans-serif;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 650px;
+    overflow: hidden;
+}
+
+.contentContactIcon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffe8e8;
+    width: 8%;
+    margin-left: 2%;
+    height: 100%;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+}
+
+.contactIcon{
+    height: 50px;
+    width: auto;
+    cursor: pointer;
+}
+
+.backIcon{
+    height: 50px;
+    width: auto;
+    cursor: pointer;
+    margin-right: 30%;
+}
+
+.contactIcon:hover{
+    filter: grayscale(30%);
+}
+
+.phoneIcon{
+    height: 45px;
+    width: auto;
+    margin-left: 15%;
+}
+
+.mailIcon{
+    height: 45px;
+    width: auto;
+}
+
+.contentMail{
+    background-color: #ffe8e8;
+    height: 92%;
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-direction: column;
+}
+
+.contentMessage{
+    display: flex;
+    justify-content: start;
+    align-items: flex-start;
+    padding: 2%;
+    padding-left: 5%;
+    padding-right: 5%;
+    border-radius: 10px;
+    height: 70%;
+    width: 80%;
+    background-color: white;
+    margin-top: 5%;
+    overflow: auto;
+}
+
+.messageMail{
+    font-size: 15px;
+    font-family: 'Sen', sans-serif;
+}
+
+.deleteIconMail{
+    height: 40px;
+    width: auto;
+    border-radius: 50%;
+    cursor: pointer;
+    margin-right: 8%;
+}
+
+.contentDeleteMail{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff41;
+    width: 6%;
+    margin-right: 2%;
+    height: 100%;
+    border-top-right-radius: 55px;
+    border-bottom-right-radius: 55px;
+}
+
+.contentDeleteMail:hover{
+    background-color: #ffffffc2;
+}
+
+.containerLinkMail{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    position: absolute;
+    bottom: 0%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    width: 100%;
+    background-color: rgb(255, 210, 210);
+}
+
+.textLinkMail{
+    border: none;
+    background-color: rgb(255, 210, 210);
+    font-size: 15px;
+    font-family: 'Sen', sans-serif;
+}
+.messageLinkMail{
+    margin: 0;
+    margin-right: 15px;
+}
+
+.titleMessageOnglet{
+    width: 80%;
+    text-align: center;
+    font-size: 20px;
+    margin-right: 0;
+    font-family: 'Sen', sans-serif;
+}
+
+.textNoMessage{
+    margin-top: 25%;
+    color: rgb(173, 173, 173);
+    font-size: 25px;
+    font-family: 'Sen', sans-serif;
+    text-align: center;
+}
+
+@media screen and (max-width: 1280px) {
+    .titleMessageOnglet{
+        margin-left: 10%;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-size: 15px;
+    }
+    .contentLittleMessageMail{
+        width: 66%;
+    }
+    .contentMail{
+        height: 92%;
+    }
+    .contentMessage{
+        height: 80%;
+    }
+}
