@@ -6,7 +6,7 @@ const api = require('./routes');
 
 const port = process.env.PORT || 8080
 
-app.use(cors({origin: 'https://sortouch-back.herokuapp.com'}))
+app.use(cors())
 
 app.use(bodyParser.json());
 
