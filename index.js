@@ -12,7 +12,7 @@ app.use(bodyParser.json());
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use('/api', api);
+app.use('https://api.sortouch.co/api', api);
 
 
 app.listen(port, () => console.log(`Server is running on port ${port}.`));
