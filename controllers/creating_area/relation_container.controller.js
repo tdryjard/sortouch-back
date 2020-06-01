@@ -14,7 +14,7 @@ exports.createRelation = function createARelation(request, response) {
         question_id : request.body.question_id,
         response_id : request.body.response_id,
         category_id : request.body.category_id,
-        onChange : request.body.onChange,
+        onchange : request.body.onchange,
         user_id : request.body.user_id,
         model_id : request.body.model_id
     })

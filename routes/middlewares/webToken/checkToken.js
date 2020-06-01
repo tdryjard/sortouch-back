@@ -3,7 +3,6 @@ require('dotenv').config();
 
 module.exports = function checkToken (req, res) {
   let token = req.headers['authorization']; // Express headers are auto converted to lowercase
-  console.log(token)
 
   let success = false
 

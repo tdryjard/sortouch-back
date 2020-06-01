@@ -5,7 +5,7 @@ const Relation = function createRelation(relation) {
     this.question_id = relation.question_id;
     this.response_id = relation.response_id;
     this.category_id = relation.category_id;
-    this.onChange = relation.onChange;
+    this.onchange = relation.onchange;
     this.user_id = relation.user_id;
     this.model_id = relation.model_id;
 }
@@ -22,7 +22,7 @@ Relation.createRelation = (newRelation, result) => {
 };
 
 Relation.updateRelation = (userId, modelId, relation, result) => {
-    db.query('UPDATE relation_container SET ? WHERE onChange = 1 AND user_id = ? AND model_id = ?', [relation, userId, modelId], (error, response) => {
+    db.query('UPDATE relation_container SET ? WHERE onchange = 1 AND user_id = ? AND model_id = ?', [relation, userId, modelId], (error, response) => {
       if (error) {
         console.log(error)
         return result(error, null);
@@ -204,7 +204,7 @@ Relation.deleteAllRelationResponse = (responseId, userId, modelId, result) => {
 
 Relation.deleteRelationOnChange = (userId, modelId, result) => {
   db.query(
-    `DELETE FROM relation_container WHERE onChange = 1 AND user_id = ? AND model_id = ?`,
+    `DELETE FROM relation_container WHERE onchange = 1 AND user_id = ? AND model_id = ?`,
     [userId, modelId],
     (err) => {
       if (err){

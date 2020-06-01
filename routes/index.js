@@ -37,7 +37,6 @@ router.use('/subscription', subscription)
 router.use('/contact', contact)
 
 router.use('/v1/customers', (req, res) => {
-    console.log(req.body.email)
     stripe.customers.create(
         {
           description: 'Customer Sortouch',
