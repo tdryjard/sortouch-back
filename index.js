@@ -1,9 +1,12 @@
 const app = require('express')();
 require('dotenv').config();
 const bodyParser = require('body-parser');
+const cors = require('cors');
 const api = require('./routes');
 
 const port = process.env.PORT || 8080
+
+app.use(cors())
 
 app.use(bodyParser.json());
 
