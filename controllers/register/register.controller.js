@@ -47,7 +47,7 @@ exports.create = function createUser(request, response) {
   // Enregistre un utilisateur
   return User.create(user, (error, data) => {
     if (error) {
-        console.log(error)
+      console.log(error)
       return response.status(500).send({
         message: error.message || 'Some error occurred while creating the user.'
       });
@@ -106,8 +106,12 @@ exports.connect = function userConnectToTheWebsite(request, response) {
 
   return User.connect(email, (err, data) => {
     // Decryptage du mot de passe en base de données et verification d'une correspondance avec celui que l'utilisateur a rentrer
-    const samePassword = bcrypt.compareSync(password, data.password);
-    if (!samePassword) return sendResponse(400, errorScheme);
+    
+    if (password && data) {
+      const samePassword = bcrypt.compareSync(password, data.password);
+      console.log(samePassword)
+      if (!samePassword) return sendResponse(400, errorScheme);
+    } else return sendResponse(400, errorScheme);
 
     if (err) {
       const { status } = err.status;
