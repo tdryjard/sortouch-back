@@ -5,7 +5,6 @@ const Relation = function createRelation(relation) {
     this.question_id = relation.question_id;
     this.response_id = relation.response_id;
     this.category_id = relation.category_id;
-    this.onchange = relation.onchange;
     this.user_id = relation.user_id;
     this.model_id = relation.model_id;
 }

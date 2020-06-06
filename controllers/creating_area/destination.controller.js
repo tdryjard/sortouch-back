@@ -74,7 +74,6 @@ exports.deleteDestination = (request, response) => {
 };
 
 exports.updateDestination = (request, response) => {
-  console.log(request)
   if (!request.body) {
     response.status(400).send({
       message: 'Content can not be empty!'

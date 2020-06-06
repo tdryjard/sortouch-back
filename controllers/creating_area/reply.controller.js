@@ -70,7 +70,6 @@ exports.deleteReply = (request, response) => {
 };
 
 exports.updateReply = (request, response) => {
-  console.log(request)
   if (!request.body) {
     response.status(400).send({
       message: 'Content can not be empty!'
@@ -80,7 +79,6 @@ exports.updateReply = (request, response) => {
   const {replyId, userId, modelId} = request.params
 
   return Reply.updateReply(replyId, userId, modelId, request.body, (error, data) => {
-    console.log(error)
     if (error) {
       if (error.kind === 'not_found') {
         return response.status(404).send({

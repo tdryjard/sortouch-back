@@ -14,7 +14,6 @@ exports.createRelation = function createARelation(request, response) {
         question_id : request.body.question_id,
         response_id : request.body.response_id,
         category_id : request.body.category_id,
-        onchange : request.body.onchange,
         user_id : request.body.user_id,
         model_id : request.body.model_id
     })
@@ -39,7 +38,6 @@ exports.createRelation = function createARelation(request, response) {
 }
 
 exports.updateRelation = (request, response) => {
-    console.log(request)
     if (!request.body) {
       response.status(400).send({
         message: 'Content can not be empty!'

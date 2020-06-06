@@ -109,7 +109,6 @@ exports.connect = function userConnectToTheWebsite(request, response) {
     
     if (password && data) {
       const samePassword = bcrypt.compareSync(password, data.password);
-      console.log(samePassword)
       if (!samePassword) return sendResponse(400, errorScheme);
     } else return sendResponse(400, errorScheme);
 
