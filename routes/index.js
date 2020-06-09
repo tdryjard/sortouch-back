@@ -8,7 +8,6 @@ const category = require('./message_space/category.route')
 const model = require('./model_space/model.route')
 const mail = require('./mail/mail.route')
 const user = require('./register/register.route')
-const subscription = require('./subscription/subscription.route')
 const contact = require('./contact/contact.route')
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
@@ -31,8 +30,6 @@ router.use('/model', model)
 router.use('/mail', mail)
 
 router.use('/user', user)
-
-router.use('/subscription', subscription)
 
 router.use('/contact', contact)
 
