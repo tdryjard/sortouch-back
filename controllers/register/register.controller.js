@@ -6,6 +6,7 @@ const regexValidity = require('../../middlewares/formValidity/regexValidity');
 const regexList = require('../../utils/regexList');
 const jwt = require('jsonwebtoken');
 const clearNullProperty = require('../../utils/clearNullObjectProperty');
+const checkToken = require('../../middlewares/webToken/checkToken')
 
 // Creer un nouvel utilisateur
 exports.create = function createUser(request, response) {
@@ -126,5 +127,61 @@ exports.connect = function userConnectToTheWebsite(request, response) {
       token,
       alertType: 'success'
     });
+  });
+};
+
+exports.update = (request, response) => {
+  if (!request.body) {
+    response.status(400).send({
+      message: 'Content can not be empty!'
+    });
+  }
+
+  const {userId} = request.params
+
+  return User.update(userId, request.body, (error, data) => {
+    if (error) {
+      if (error.kind === 'not_found') {
+        return response.status(404).send({
+          message: `pas trouvé de user ${contactId}. veuillez nous contacter`
+        });
+      }
+      return response.status(500).send({
+        message: `Problème connexion à la base de donnée, veuillez nous contacter en cas de problèmes`
+      });
+    }
+
+    const checkingToken = checkToken(request, response)
+    if (checkingToken === false) {
+      return response.status(400).send({
+        message: 'error token'
+      })
+    }
+
+    return response.status(200).send(data);
+  });
+};
+
+exports.find = (request, response) => {
+  User.find(request.params.userId, (error, dbResult) => {
+    if (error !== null) {
+      if (error.kind === 'not_found') {
+        return response.status(404).send({
+          message: `Not found user with id ${request.params.userId}.`
+        });
+      }
+      return response.status(500).send({
+        message: `Error retrieving user with id ${request.params.userId}`
+      });
+    }
+
+    const checkingToken = checkToken(request, response)
+    if (checkingToken === false) {
+      return response.status(400).send({
+        message: 'error token'
+      })
+    }
+    // Envoi de la réponse
+    return response.status(200).send(dbResult);
   });
 };

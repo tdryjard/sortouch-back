@@ -8,6 +8,7 @@ const Mail = function createMail(mail) {
     this.model_id = mail.model_id;
     this.user_id = mail.user_id;
     this.view = mail.view;
+    this.date = mail.date;
 }
 
 
@@ -81,12 +82,12 @@ Mail.updateMailWithId = (mailId, mail, result) => {
   });
 };
 
-Mail.deleteMail = (mailId, userId, modelId, result) => {
-  db.query('DELETE FROM mail WHERE id = ? AND user_id = ? AND model_id = ?', [mailId, userId, modelId], err => {
+Mail.deleteMail = (userId, result) => {
+  db.query('DELETE FROM mail WHERE user_id = ? AND deleted = 1', [userId], err => {
     if (err) return result({ message: err.message, status: 500 }, null);
 
     return result(null, {
-      message: `mail #${mailId} supprimée`,
+      message: `mails supprimés`,
       status: 200
     });
   });

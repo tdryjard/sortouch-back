@@ -13,6 +13,6 @@ router.put('/update/:userId/:modelId/:categoryId/:mailId', mail.updateMail)
 
 router.put('/updateSimple/:mailId', mail.updateMailWithId)
 
-router.delete('/delete/:mailId/:userId/:modelId', mail.deleteMail)
+router.delete('/delete/:userId', mail.deleteMail)
 
 module.exports = router

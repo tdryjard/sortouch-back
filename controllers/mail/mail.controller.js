@@ -16,7 +16,8 @@ exports.createMail = function createAMail(request, response) {
     category_id: request.body.category_id,
     model_id: request.body.model_id,
     user_id: request.body.user_id,
-    view: request.body.view
+    view: request.body.view,
+    date: request.body.date
   })
 
   return Mail.createMail(mail, (error, data) => {
@@ -147,8 +148,8 @@ exports.updateMailWithId = (request, response) => {
 };
 
 exports.deleteMail = (request, response) => {
-  const { mailId, userId, modelId } = request.params;
-  Mail.deleteMail(mailId, userId, modelId, (err, result) => {
+  const { userId } = request.params;
+  Mail.deleteMail(userId, (err, result) => {
     if (err !== null) {
       return response.status(err.status).send(err);
     }
