@@ -69,6 +69,24 @@ exports.deleteReply = (request, response) => {
   });
 };
 
+exports.deleteByModel = (request, response) => {
+  const { userId, modelId } = request.params;
+  Reply.deleteByModel(userId, modelId, (err, result) => {
+    if (err !== null) {
+      return response.status(err.status).send(err);
+    }
+
+    const checkingToken = checkToken(request, response)
+      if(checkingToken === false){
+        return response.status(400).send({
+          message: 'error token'
+        })
+      }
+
+    return response.status(200).send(result);
+  });
+};
+
 exports.updateReply = (request, response) => {
   if (!request.body) {
     response.status(400).send({

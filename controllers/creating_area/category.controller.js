@@ -1,4 +1,4 @@
-const Category = require('../../models/message_space/category.model')
+const Category = require('../../models/creating_area/category.model')
 const checkToken = require('../../middlewares/webToken/checkToken')
 
 exports.createCategory = function createACategory(request, response) {
@@ -70,7 +70,6 @@ exports.deleteCategory = (request, response) => {
 };
 
 exports.updateCategory = (request, response) => {
-  console.log(request)
   if (!request.body) {
     response.status(400).send({
       message: 'Content can not be empty!'
@@ -100,5 +99,24 @@ exports.updateCategory = (request, response) => {
       }
       
     return response.status(200).send(data);
+  });
+};
+
+exports.deleteByModel = (request, response) => {
+  const { userId, modelId } = request.params;
+  Category.deleteByModel(userId, modelId, (err, result) => {
+    if (err !== null) {
+      console.log(err)
+      return response.status(err.status).send(err);
+    }
+
+    const checkingToken = checkToken(request, response)
+      if(checkingToken === false){
+        return response.status(400).send({
+          message: 'error token'
+        })
+      }
+
+    return response.status(200).send(result);
   });
 };

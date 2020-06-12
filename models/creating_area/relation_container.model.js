@@ -218,4 +218,21 @@ Relation.deleteRelationOnChange = (userId, modelId, result) => {
   });
 };
 
+Relation.deleteByModel = (userId, modelId, result) => {
+  db.query(
+    `DELETE FROM relation_container WHERE user_id = ? AND model_id = ?`,
+    [userId, modelId],
+    (err) => {
+      if (err){
+        console.log(err)
+        return result({ message: err.message, status: 500 }, null);
+      } 
+
+    return result(null, {
+      message: `Relation supprimée `,
+      status: 200
+    });
+  });
+};
+
 module.exports = Relation;

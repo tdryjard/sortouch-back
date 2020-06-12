@@ -43,7 +43,21 @@ Reply.deleteReply = (replyId, userId, modelId, result) => {
     }
 
     return result(null, {
-      message: `Destination #${replyId} supprimée`,
+      message: `response delete`,
+      status: 200
+    });
+  });
+};
+
+Reply.deleteByModel = (userId, modelId, result) => {
+  db.query('DELETE FROM response WHERE user_id = ? AND model_id = ?', [userId, modelId], err => {
+    if (err){
+      console.log(err)
+      return result({ message: err.message, status: 500 }, null);
+    }
+
+    return result(null, {
+      message: `responses delete`,
       status: 200
     });
   });

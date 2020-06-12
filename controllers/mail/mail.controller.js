@@ -164,3 +164,21 @@ exports.deleteMail = (request, response) => {
     return response.status(200).send(result);
   });
 };
+
+exports.deleteByModel = (request, response) => {
+  const { userId, modelId } = request.params;
+  Mail.deleteByModel(userId, modelId, (err, result) => {
+    if (err !== null) {
+      return response.status(err.status).send(err);
+    }
+
+    const checkingToken = checkToken(request, response)
+    if (checkingToken === false) {
+      return response.status(400).send({
+        message: 'error token'
+      })
+    }
+
+    return response.status(200).send(result);
+  });
+};

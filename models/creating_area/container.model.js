@@ -99,4 +99,20 @@ Container.deleteContainer = (containerId, userId, modelId, result) => {
   });
 };
 
+Container.deleteByModel = (userId, modelId, result) => {
+  db.query(
+    `DELETE FROM container WHERE user_id = ? AND model_id = ?`,
+    [userId, modelId],
+    (err) => {
+      if (err){
+        return result({ message: err.message, status: 500 }, null);
+      } 
+
+    return result(null, {
+      message: `containers supprimés `,
+      status: 200
+    });
+  });
+};
+
 module.exports = Container;

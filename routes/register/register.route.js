@@ -11,4 +11,8 @@ router.put('/update/:userId', User.update)
 
 router.get('/find/:userId', User.find)
 
+router.get('/findToPartner/:partnerId', User.findToPartner)
+
+router.put('/changeLog/:userId', User.changeLog)
+
 module.exports = router

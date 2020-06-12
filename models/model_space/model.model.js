@@ -3,6 +3,7 @@ const db = require('../database')
 const Model = function createModel(model) {
     this.name = model.name;
     this.user_id = model.user_id;
+    this.color = model.color;
 }
 
 Model.createModel = (newModel, result) => {

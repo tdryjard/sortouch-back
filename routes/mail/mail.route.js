@@ -15,4 +15,6 @@ router.put('/updateSimple/:mailId', mail.updateMailWithId)
 
 router.delete('/delete/:userId', mail.deleteMail)
 
+router.delete('/deleteByModel/:userId/:modelId', mail.deleteByModel)
+
 module.exports = router

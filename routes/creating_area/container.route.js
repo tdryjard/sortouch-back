@@ -15,4 +15,6 @@ router.delete('/deleteContainerRelationResponse/:responseId/:userId/:modelId', c
 
 router.delete('/delete/:containerId/:userId/:modelId', container.deleteContainer)
 
+router.delete('/deleteByModel/:userId/:modelId', container.deleteByModel)
+
 module.exports = router;

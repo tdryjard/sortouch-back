@@ -1,5 +1,5 @@
 const express = require('express')
-const Category = require('../../controllers/message_space/category.controller')
+const Category = require('../../controllers/creating_area/category.controller')
 
 const router = express.Router()
 
@@ -10,5 +10,7 @@ router.get('/findAll/:userId/:modelId', Category.findCategory)
 router.delete('/delete/:categoryId/:userId/:modelId', Category.deleteCategory)
 
 router.put('/update/:categoryId/:userId/:modelId', Category.updateCategory)
+
+router.delete('/deleteByModel/:userId/:modelId', Category.deleteByModel)
 
 module.exports = router

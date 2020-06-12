@@ -11,7 +11,8 @@ exports.createModel = function createAModel(request, response) {
 
     const model = new Model({
         name: request.body.name,
-        user_id: request.body.user_id
+        user_id: request.body.user_id,
+        color: request.body.color
     })
 
     return Model.createModel(model, (error, data) => {
@@ -69,7 +70,6 @@ exports.deleteModel = (request, response) => {
 
 exports.updateModel = (request, response) => {
   if (!request.body) {
-    console.log(request.body)
     response.status(400).send({
       message: 'Content can not be empty!'
     });

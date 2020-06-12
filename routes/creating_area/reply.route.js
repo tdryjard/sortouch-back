@@ -9,6 +9,8 @@ router.get('/findAll/:userId/:modelId', reply.findReply)
 
 router.delete('/delete/:replyId/:userId/:modelId', reply.deleteReply)
 
+router.delete('/deleteByModel/:userId/:modelId', reply.deleteByModel)
+
 router.put('/update/:replyId/:userId/:modelId', reply.updateReply)
 
 module.exports = router; 

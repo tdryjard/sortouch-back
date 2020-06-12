@@ -13,21 +13,23 @@ exports.create = function createUser(request, response) {
   const {
     email,
     password,
-    type
+    type,
+    mdp_generate,
+    email_generate,
+    name_client,
+    partner_id
   } = request.body;
 
   // Creer un utilisateur
   const user = new User({
     email: email || null,
     password: password || null,
-    type: type || null
+    type: type || null,
+    mdp_generate: mdp_generate || null,
+    email_generate: email_generate || null,
+    name_client: name_client || null,
+    partner_id: partner_id || null
   });
-
-  // Verification qu'aucune entrée obligatoire n'est vide
-  const emptyInputsErrorHandler = noEmptyInputs(user);
-  if (emptyInputsErrorHandler) {
-    return response.status(400).send(emptyInputsErrorHandler);
-  }
 
   // Verification que des entrées n'ont que des lettres
   const { emailRegex } = regexList;
@@ -130,6 +132,46 @@ exports.connect = function userConnectToTheWebsite(request, response) {
   });
 };
 
+exports.changeLog = function updateFirstLog(request, response) {
+
+  // Verification que des entrées n'ont que des lettres
+  const { emailRegex } = regexList;
+  const email = request.body.email
+  let pass = request.body. password
+  const emailCharactersErrorHandler = regexValidity({email}, emailRegex);
+  if (emailCharactersErrorHandler) {
+    return response.status(400).send(emailCharactersErrorHandler);
+  }
+
+  // Verification mot de passe
+  const passwordErrorHandler = verifyPassword(pass, 8, 25);
+  if (passwordErrorHandler) {
+    return response.status(400).send(passwordErrorHandler);
+  }
+
+  // Encryptage du mot de passe
+  let password = bcrypt.hashSync(pass, 10);
+  request.body.password = password
+
+  // Enregistre un utilisateur
+  return User.changeLog(request.params.userId, request.body, (error, data) => {
+    if (error) {
+      console.log(error)
+      return response.status(500).send({
+        message: error.message || 'Some error occurred while creating the user.'
+      });
+    }
+    // Envoi de la réponse en status 201 soit (Created)
+    return response.status(201).send({
+      alert: {
+        type: 'success',
+        text: 'Vous êtes inscrit.'
+      },
+      data
+    });
+  });
+};
+
 exports.update = (request, response) => {
   if (!request.body) {
     response.status(400).send({
@@ -172,6 +214,30 @@ exports.find = (request, response) => {
       }
       return response.status(500).send({
         message: `Error retrieving user with id ${request.params.userId}`
+      });
+    }
+
+    const checkingToken = checkToken(request, response)
+    if (checkingToken === false) {
+      return response.status(400).send({
+        message: 'error token'
+      })
+    }
+    // Envoi de la réponse
+    return response.status(200).send(dbResult);
+  });
+};
+
+exports.findToPartner = (request, response) => {
+  User.findToPartner(request.params.partnerId, (error, dbResult) => {
+    if (error !== null) {
+      if (error.kind === 'not_found') {
+        return response.status(404).send({
+          message: `Not found user with partner_id ${request.params.partnerId}.`
+        });
+      }
+      return response.status(500).send({
+        message: `Error retrieving user with partner_id ${request.params.partnerId}`
       });
     }
 

@@ -93,4 +93,15 @@ Mail.deleteMail = (userId, result) => {
   });
 };
 
+Mail.deleteByModel = (userId, modelId, result) => {
+  db.query('DELETE FROM mail WHERE user_id = ? AND model_id = ?', [userId, modelId], err => {
+    if (err) return result({ message: err.message, status: 500 }, null);
+
+    return result(null, {
+      message: `mails supprimés`,
+      status: 200
+    });
+  });
+};
+
 module.exports = Mail

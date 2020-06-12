@@ -47,6 +47,17 @@ Question.deleteQuestion = (questionId, userId, modelId, result) => {
   });
 };
 
+Question.deleteByModel = (userId, modelId, result) => {
+  db.query('DELETE FROM question WHERE user_id = ? AND model_id = ?', [userId, modelId], err => {
+    if (err) return result({ message: err.message, status: 500 }, null);
+    
+    return result(null, {
+      message: `Questions supprimée`,
+      status: 200
+    });
+  });
+};
+
 
 Question.updateQuestion = (questionId, userId, modelId, question, result) => {
   db.query('UPDATE question SET ? WHERE id = ? AND user_id = ? AND model_id = ?', [question, questionId, userId, modelId], (error, response) => {

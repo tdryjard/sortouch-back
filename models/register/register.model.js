@@ -4,6 +4,10 @@ const User = function createUser(user) {
     this.email = user.email;
     this.password = user.password;
     this.type = user.type;
+    this.mdp_generate = user.mdp_generate;
+    this.email_generate = user.email_generate;
+    this.name_client = user.name_client;
+    this.partner_id = user.partner_id;
 }
 
 User.create = (newUser, result) => {
@@ -43,6 +47,21 @@ User.update = (userId, newUser, result) => {
   });
 };
 
+User.changeLog = (userId, newUser, result) => {
+  db.query('UPDATE user SET ? WHERE id = ?', [newUser, userId], (error, response) => {
+    if (error) {
+      console.log(error)
+      return result(error, null);
+    }
+
+    if (response.affectedRows === 0) {
+      return result({ kind: 'not_found' }, null);
+    }
+
+    return result(null, { userId: Number(userId), ...newUser });
+  });
+};
+
 User.find = (userId, result) => {
   db.query(
     'SELECT custom FROM user WHERE id = ?',
@@ -61,5 +80,25 @@ User.find = (userId, result) => {
     }
   );
 };
+
+User.findToPartner = (partnerId, result) => {
+  db.query(
+    'SELECT id, type, mdp_generate, email_generate, name_client FROM user WHERE partner_id = ?',
+    [partnerId],
+    (error, dbResult) => {
+      if (error) {
+        console.log(error)
+        return result(error, null);
+      }
+
+      if (dbResult.length) {
+        return result(null, dbResult);
+      }
+
+      return result({ kind: 'not_found' }, null);
+    }
+  );
+};
+
 
 module.exports = User

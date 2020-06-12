@@ -27,4 +27,6 @@ router.delete('/delete/:containerId/:userId/:modelId', relation.deleteRelation)
 
 router.delete('/delete/:userId/:modelId', relation.deleteRelationOnChange)
 
+router.delete('/deleteByModel/:userId/:modelId', relation.deleteByModel)
+
 module.exports = router;

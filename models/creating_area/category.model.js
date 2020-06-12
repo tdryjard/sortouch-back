@@ -62,4 +62,17 @@ Category.updateCategory = (categoryId, userId, modelId, category, result) => {
   });
 };
 
+
+
+Category.deleteByModel = (userId, modelId, result) => {
+  db.query('DELETE FROM category WHERE user_id = ? AND model_id = ?', [userId, modelId], err => {
+    if (err) return result({ message: err.message, status: 500 }, null);
+
+    return result(null, {
+      message: `Destinations supprimées`,
+      status: 200
+    });
+  });
+};
+
 module.exports = Category;

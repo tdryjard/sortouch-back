@@ -130,6 +130,26 @@ exports.deleteContainer = (request, response) => {
     if (err !== null) {
       return response.status(err.status).send(err);
     }
+    console.log(err)
+
+    const checkingToken = checkToken(request, response)
+      if(checkingToken === false){
+        return response.status(400).send({
+          message: 'error token'
+        })
+      }
+      
+    return response.status(200).send(result);
+  });
+};
+
+exports.deleteByModel = (request, response) => {
+  const { userId, modelId } = request.params;
+  Container.deleteByModel(userId, modelId,(err, result) => {
+    console.log(err)
+    if (err !== null) {
+      return response.status(err.status).send(err);
+    }
 
     const checkingToken = checkToken(request, response)
       if(checkingToken === false){
