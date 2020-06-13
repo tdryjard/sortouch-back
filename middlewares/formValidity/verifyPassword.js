@@ -1,9 +1,6 @@
 const regexValidity = require('./regexValidity');
 
 module.exports = function verifyPassword(password, min, max) {
-  const regex = new RegExp(/^[a-zA-Z0-9]+$/);
-  const regexError = regexValidity({ password }, regex);
-  if (regexError) return regexError;
 
   if (min > password.length || password.length > max) {
     return {
