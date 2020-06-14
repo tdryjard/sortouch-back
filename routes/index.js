@@ -58,7 +58,7 @@ router.use('/create-subscription', async (req, res) => {
   );
   const subscription = await stripe.subscriptions.create({
     customer: req.body.customerId,
-    items: [{ price: 'price_1GrQ6bKleZ50Ivn665vv20Bt' }],
+    items: [{ price: 'price_1GttoJKleZ50Ivn6srYmDcgG' }],
     expand: ['latest_invoice.payment_intent'],
   });
   res.send(subscription);
@@ -82,7 +82,7 @@ router.use('/create-subscription-2', async (req, res) => {
   );
   const subscription = await stripe.subscriptions.create({
     customer: req.body.customerId,
-    items: [{ price: 'price_1GrXyuKleZ50Ivn63Ue0o7ZA' }],
+    items: [{ price: 'price_1GttrkKleZ50Ivn6FXPJZElr' }],
     expand: ['latest_invoice.payment_intent'],
   });
   res.send(subscription);
