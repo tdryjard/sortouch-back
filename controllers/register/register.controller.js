@@ -17,7 +17,8 @@ exports.create = function createUser(request, response) {
     mdp_generate,
     email_generate,
     name_client,
-    partner_id
+    partner_id,
+    key_reset
   } = request.body;
 
   // Creer un utilisateur
@@ -28,7 +29,8 @@ exports.create = function createUser(request, response) {
     mdp_generate: mdp_generate || null,
     email_generate: email_generate || null,
     name_client: name_client || null,
-    partner_id: partner_id || null
+    partner_id: partner_id || null,
+    key_reset: key_reset || null
   });
 
   // Verification que des entrées n'ont que des lettres
@@ -109,7 +111,7 @@ exports.connect = function userConnectToTheWebsite(request, response) {
 
   return User.connect(email, (err, data) => {
     // Decryptage du mot de passe en base de données et verification d'une correspondance avec celui que l'utilisateur a rentrer
-    
+
     if (password && data) {
       const samePassword = bcrypt.compareSync(password, data.password);
       if (!samePassword) return sendResponse(400, errorScheme);
@@ -134,15 +136,16 @@ exports.connect = function userConnectToTheWebsite(request, response) {
 
 exports.changeLog = function updateFirstLog(request, response) {
 
-  // Verification que des entrées n'ont que des lettres
-  const { emailRegex } = regexList;
-  const email = request.body.email
-  let pass = request.body. password
-  const emailCharactersErrorHandler = regexValidity({email}, emailRegex);
-  if (emailCharactersErrorHandler) {
-    return response.status(400).send(emailCharactersErrorHandler);
+  if (request.body.email) {
+    const { emailRegex } = regexList;
+    const email = request.body.email
+    const emailCharactersErrorHandler = regexValidity({ email }, emailRegex);
+    if (emailCharactersErrorHandler) {
+      return response.status(400).send(emailCharactersErrorHandler);
+    }
   }
 
+  let pass = request.body.password
   // Verification mot de passe
   const passwordErrorHandler = verifyPassword(pass, 8, 25);
   if (passwordErrorHandler) {
@@ -179,7 +182,19 @@ exports.update = (request, response) => {
     });
   }
 
-  const {userId} = request.params
+  const { userId } = request.params
+
+  if (request.body.key_reset) {
+    request.body.key_reset = bcrypt.hashSync(request.body.key_reset, 10);
+  }
+  else {
+    const checkingToken = checkToken(request, response)
+    if (checkingToken === false) {
+      return response.status(400).send({
+        message: 'error token'
+      })
+    }
+  }
 
   return User.update(userId, request.body, (error, data) => {
     if (error) {
@@ -193,14 +208,8 @@ exports.update = (request, response) => {
       });
     }
 
-    const checkingToken = checkToken(request, response)
-    if (checkingToken === false) {
-      return response.status(400).send({
-        message: 'error token'
-      })
-    }
 
-    return response.status(200).send(data);
+    return response.status(200).send(request.body);
   });
 };
 
@@ -241,13 +250,57 @@ exports.findToPartner = (request, response) => {
       });
     }
 
-    const checkingToken = checkToken(request, response)
-    if (checkingToken === false) {
+    if (!(request.headers['authorization'] === "validy24816")) {
       return response.status(400).send({
         message: 'error token'
       })
     }
     // Envoi de la réponse
     return response.status(200).send(dbResult);
+  });
+};
+
+exports.findByEmail = (request, response) => {
+  User.findByEmail(request.params.email, (error, dbResult) => {
+    if (error !== null) {
+      if (error.kind === 'not_found') {
+        return response.status(404).send({
+          message: `Not found user with email ${request.params.email}.`
+        });
+      }
+      return response.status(500).send({
+        message: `Error server`
+      });
+    }
+    if ((request.headers['authorization'] !== "validy24816")) {
+      return response.status(400).send({
+        message: 'error token'
+      })
+    }
+    // Envoi de la réponse
+    return response.status(200).send(dbResult);
+  });
+};
+
+
+exports.compareKeyReset = function userConnectToTheWebsite(request, response) {
+  const { key_reset, userId } = request.body;
+  return User.compareKeyReset(userId, (err, data) => {
+    // Decryptage du mot de passe en base de données et verification d'une correspondance avec celui que l'utilisateur a rentrer
+    let nice = false
+    const samePassword = bcrypt.compareSync(key_reset, data.key_reset);
+    if (!samePassword) return response.status(400).send({
+      message: `Error not good key`
+    });
+    else nice = true
+
+    if (err) {
+      return response.status(500).send({
+        message: `Error server`
+      });
+    }
+
+    if (nice === true) return response.status(200).send(data);
+    else return response.status(400);
   });
 };
