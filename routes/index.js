@@ -34,6 +34,7 @@ router.use('/create-customer', async (req, res) => {
   // Create a new customer object
   const customer = await stripe.customers.create({
     email: req.body.email,
+    name: req.body.name
   });
 
   // Recommendation: save the customer.id in your database.
@@ -58,7 +59,7 @@ router.use('/create-subscription', async (req, res) => {
   );
   const subscription = await stripe.subscriptions.create({
     customer: req.body.customerId,
-    items: [{ price: 'price_1GttoJKleZ50Ivn6srYmDcgG' }],
+    items: [{ price: 'price_1GwZJxKleZ50Ivn6n5S03e4U' }],
     expand: ['latest_invoice.payment_intent'],
   });
   res.send(subscription);
@@ -82,7 +83,7 @@ router.use('/create-subscription-2', async (req, res) => {
   );
   const subscription = await stripe.subscriptions.create({
     customer: req.body.customerId,
-    items: [{ price: 'price_1GttrkKleZ50Ivn6FXPJZElr' }],
+    items: [{ price: 'price_1GwZNuKleZ50Ivn6rjynly4I' }],
     expand: ['latest_invoice.payment_intent'],
   });
   res.send(subscription);
