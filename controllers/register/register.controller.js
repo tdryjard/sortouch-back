@@ -250,7 +250,8 @@ exports.findToPartner = (request, response) => {
       });
     }
 
-    if (!(request.headers['authorization'] === "validy24816")) {
+    const checkingToken = checkToken(request, response)
+    if (checkingToken === false) {
       return response.status(400).send({
         message: 'error token'
       })

@@ -8,6 +8,8 @@ const model = require('./model_space/model.route')
 const mail = require('./mail/mail.route')
 const user = require('./register/register.route')
 const contact = require('./contact/contact.route')
+const onepage = require('./onepage/onepage.route')
+const image = require('./image/image.route')
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 const router = express.Router();
@@ -29,6 +31,10 @@ router.use('/mail', mail)
 router.use('/user', user)
 
 router.use('/contact', contact)
+
+router.use('/onepage', onepage)
+
+router.use('/image', image)
 
 router.use('/create-customer', async (req, res) => {
   // Create a new customer object
