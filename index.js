@@ -8,9 +8,14 @@ const port = process.env.PORT || 8080
 
 app.use(cors('https://sortouch.co/'))
 
-app.use(bodyParser.json());
+app.use(bodyParser.json({
+    limit: '5mb'
+}));
 
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({
+    extended: true,
+    limit: '5mb'
+}));
 
 app.use('/api', api);
 
