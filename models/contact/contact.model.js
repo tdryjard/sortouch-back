@@ -61,4 +61,15 @@ Contact.deleteByModel = (userId, modelId, result) => {
   });
 };
 
+Contact.delete = (id, result) => {
+  db.query('DELETE FROM contact WHERE id = ?', [id], err => {
+    if (err) return result({ message: err.message, status: 500 }, null);
+
+    return result(null, {
+      message: `contact supprimée`,
+      status: 200
+    });
+  });
+};
+
 module.exports = Contact

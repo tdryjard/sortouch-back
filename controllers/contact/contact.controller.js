@@ -105,3 +105,13 @@ exports.deleteByModel = (request, response) => {
     return response.status(200).send(result);
   });
 };
+
+exports.delete = (request, response) => {
+  const { id } = request.params;
+  Contact.delete(id, (err, result) => {
+    if (err !== null) {
+      return response.status(err.status).send(err);
+    }
+    return response.status(200).send(result);
+  });
+};
