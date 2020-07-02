@@ -9,4 +9,6 @@ router.get('/find/:id', Image.find)
 
 router.put('/update/:id', Image.update)
 
+router.delete('/delete/:id', Image.delete)
+
 module.exports = router

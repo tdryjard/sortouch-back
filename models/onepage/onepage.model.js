@@ -56,17 +56,25 @@ Onepage.findByName = (name, result) => {
 
 Onepage.updateOnepage = (userId, modelId, onechange, result) => {
     db.query('UPDATE onepage SET ? WHERE user_id = ? AND model_id = ?', [onechange, userId, modelId], (error, response) => {
-      if (error) {
-        console.log(error)
-        return result(error, null);
-      }
-  
-      if (response.affectedRows === 0) {
-        return result({ kind: 'not_found' }, null);
-      }
-  
-      return result(null, { modelId: Number(modelId), ...onechange });
+        if (error) {
+            console.log(error)
+            return result(error, null);
+        }
+
+        if (response.affectedRows === 0) {
+            return result({ kind: 'not_found' }, null);
+        }
+
+        return result(null, { modelId: Number(modelId), ...onechange });
     });
-  };
+};
+
+Onepage.deleteByModel = (userId, modelId, result) => {
+    db.query('DELETE FROM onepage WHERE user_id = ? AND model_id = ?', [userId, modelId], err => {
+        if (err) return result({ message: err.message, status: 500 }, null);
+
+        return result(null, {result});
+    });
+};
 
 module.exports = Onepage

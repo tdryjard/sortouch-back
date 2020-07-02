@@ -49,4 +49,15 @@ Image.update = (id, image, result) => {
     });
 };
 
+Image.delete = (id, result) => {
+    db.query('DELETE FROM image WHERE id = ?', [id], err => {
+      if (err) return result({ message: err.message, status: 500 }, null);
+  
+      return result(null, {
+        message: `image supprimée`,
+        status: 200
+      });
+    });
+  };
+
 module.exports = Image

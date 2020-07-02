@@ -101,3 +101,21 @@ exports.updateOnepage = (request, response) => {
     return response.status(200).send(data);
   });
 };
+
+exports.deleteByModel = (request, response) => {
+  const { userId, modelId } = request.params;
+  Onepage.deleteByModel(userId, modelId, (err, result) => {
+    if (err !== null) {
+      return response.status(err.status).send(err);
+    }
+
+    const checkingToken = checkToken(request, response)
+    if (checkingToken === false) {
+      return response.status(400).send({
+        message: 'error token'
+      })
+    }
+
+    return response.status(200).send(result);
+  });
+};

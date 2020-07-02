@@ -9,4 +9,6 @@ router.get('/findByUser/:userId', contact.findContactByUser)
 
 router.put('/update/:contactId', contact.updateContact)
 
+router.delete('/deleteByModel/:userId/:modelId', contact.deleteByModel)
+
 module.exports = router

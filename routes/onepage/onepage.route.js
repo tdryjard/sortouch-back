@@ -11,4 +11,6 @@ router.get('/findByName/:name', Onepage.findByName)
 
 router.put('/update/:userId/:modelId', Onepage.updateOnepage)
 
+router.delete('/deleteByModel/:userId/:modelId', Onepage.deleteByModel)
+
 module.exports = router

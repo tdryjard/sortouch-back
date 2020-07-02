@@ -33,52 +33,62 @@ exports.create = function createAbase64(request, response) {
 }
 
 exports.find = (request, response) => {
-    Image.find(request.params.id, (error, dbResult) => {
-      if (error !== null) {
-        if (error.kind === 'not_found') {
-          return response.status(404).send({
-            message: `Not found image with id ${request.params.id}.`
-          });
-        }
-        return response.status(500).send({
-          message: `Error retrieving image with id ${request.params.id}`
+  Image.find(request.params.id, (error, dbResult) => {
+    if (error !== null) {
+      if (error.kind === 'not_found') {
+        return response.status(404).send({
+          message: `Not found image with id ${request.params.id}.`
         });
       }
-  
-      // Envoi de la réponse
-      return response.status(200).send(dbResult);
-    });
-  };
-  
-  exports.update = (request, response) => {
-    if (!request.body) {
-      response.status(400).send({
-        message: 'Content can not be empty!'
+      return response.status(500).send({
+        message: `Error retrieving image with id ${request.params.id}`
       });
     }
-  
-    const { id } = request.params
-  
-    return Image.update(id, request.body, (error, data) => {
-      if (error) {
-        console.log(error)
-        if (error.kind === 'not_found') {
-          return response.status(404).send({
-            message: `not found.`
-          });
-        }
-        return response.status(500).send({
-          message: `error server`
+
+    // Envoi de la réponse
+    return response.status(200).send(dbResult);
+  });
+};
+
+exports.update = (request, response) => {
+  if (!request.body) {
+    response.status(400).send({
+      message: 'Content can not be empty!'
+    });
+  }
+
+  const { id } = request.params
+
+  return Image.update(id, request.body, (error, data) => {
+    if (error) {
+      console.log(error)
+      if (error.kind === 'not_found') {
+        return response.status(404).send({
+          message: `not found.`
         });
       }
-  
-      const checkingToken = checkToken(request, response)
-      if (checkingToken === false) {
-        return response.status(400).send({
-          message: 'error token'
-        })
-      }
-      
-      return response.status(200).send(data);
-    });
-  };
+      return response.status(500).send({
+        message: `error server`
+      });
+    }
+
+    const checkingToken = checkToken(request, response)
+    if (checkingToken === false) {
+      return response.status(400).send({
+        message: 'error token'
+      })
+    }
+
+    return response.status(200).send(data);
+  });
+};
+
+exports.delete = (request, response) => {
+  const { id } = request.params;
+  Image.delete(id, (err, result) => {
+    if (err !== null) {
+      return response.status(err.status).send(err);
+    }
+    return response.status(200).send(result);
+  });
+};
