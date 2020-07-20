@@ -17,25 +17,6 @@ Category.createCategory = (newCategory, result) => {
     })
 };
 
-Category.findCategory = (userId, modelId, result) => {
-    db.query(
-      'SELECT * FROM category WHERE user_id = ? AND model_id = ?',
-      [userId, modelId],
-      (error, dbResult) => {
-        if (error) {
-          console.log(error)
-          return result(error, null);
-        }
-  
-        if (dbResult.length) {
-          return result(null, dbResult);
-        }
-  
-        return result({ kind: 'not_found' }, null);
-      }
-    );
-  };
-
 Category.deleteCategory = (categoryId, userId, modelId, result) => {
   db.query('DELETE FROM category WHERE id = ? AND user_id = ? AND model_id = ?', [categoryId, userId, modelId], err => {
     if (err) return result({ message: err.message, status: 500 }, null);

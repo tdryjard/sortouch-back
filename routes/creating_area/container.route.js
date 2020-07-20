@@ -5,10 +5,6 @@ const router = express.Router()
 
 router.post('/create', container.createContainer)
 
-router.get('/', container.findChatBot)
-
-router.get('/findAll/:userId/:responseId/:modelId', container.findContainers)
-
 router.put('/updateOrder/:containerId/:userId/:modelId', container.updateContainerOrder)
 
 router.delete('/deleteContainerRelationResponse/:responseId/:userId/:modelId', container.deleteContainerRelationResponse)

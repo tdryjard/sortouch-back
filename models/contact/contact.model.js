@@ -10,16 +10,6 @@ const Contact = function createContact(mail) {
   this.color = mail.color;
 }
 
-Contact.createContact = (contact, result) => {
-  db.query('INSERT INTO contact SET ?', [contact], (error, dbResult) => {
-    if (error) {
-      console.log(error)
-      return result(error, null)
-    }
-    return result(null, { id: dbResult.insertId, ...contact })
-  })
-};
-
 Contact.findContactByUser = (userId, result) => {
   db.query(
     'SELECT * FROM contact WHERE user_id = ?',

@@ -5,8 +5,6 @@ const router = express.Router()
 
 router.post('/add', reply.createReply)
 
-router.get('/findAll/:userId/:modelId', reply.findReply)
-
 router.delete('/delete/:replyId/:userId/:modelId', reply.deleteReply)
 
 router.delete('/deleteByModel/:userId/:modelId', reply.deleteByModel)

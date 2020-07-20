@@ -18,43 +18,6 @@ Container.createContainer = (newContainer, result) => {
     })
 };
 
-Container.findContainers = (userId, responseId, modelId, result) => {
-    db.query(
-      `SELECT * FROM container WHERE user_id = ? AND (response_id = ? OR response_id IS NULL) AND model_id = ? ORDER BY ordering ASC`,
-      [userId, responseId, modelId],
-      (error, dbResult) => {
-        if (error) {
-          console.log(error)
-          return result(error, null);
-        }
-  
-        if (dbResult.length) {
-          return result(null, dbResult);
-        }
-  
-        return result({ kind: 'not_found' }, null);
-      }
-    );
-  };
-
-Container.findChatbot = (modelId, userId, responseId, result) => {
-  db.query(
-    'SELECT * FROM container WHERE user_id = ? AND response_id = ? AND model_id = ? OR response_id IS NULL ORDER BY ordering ASC',
-    [userId, modelId, responseId],
-    (error, dbResult) => {
-      if (error) {
-        return result(error, null);
-      }
-
-      if (dbResult.length) {
-        return result(null, dbResult);
-      }
-
-      return result({ kind: 'not_found' }, null);
-    }
-  );
-};
-
 Container.updateContainerOrder = (containerId, userId, modelId, container, result) => {
   db.query('UPDATE container SET ? WHERE id = ? AND user_id = ? AND model_id = ?', [container, containerId, userId, modelId], (error, response) => {
     if (error) {

@@ -1,5 +1,6 @@
 const Model = require('../../models/model_space/model.model')
 const checkToken = require('../../middlewares/webToken/checkToken')
+const checkTokenCookie = require('../../middlewares/webToken/checkTokenCookie')
 
 exports.createModel = function createAModel(request, response) {
 
@@ -24,11 +25,12 @@ exports.createModel = function createAModel(request, response) {
     }
 
     const checkingToken = checkToken(request, response)
-      if(checkingToken === false){
-        return response.status(400).send({
-          message: 'error token'
-        })
-      }
+    const checkingTokenCookie = checkTokenCookie(response, request)
+    if ((checkingToken === false) || checkingTokenCookie === false) {
+      return response.status(400).send({
+        message: 'error token'
+      })
+    }
     
     return response.status(201).send(data);
 })
@@ -46,9 +48,9 @@ exports.findModel = (request, response) => {
           message: `Error retrieving category with id ${request.params.userId}`
         });
       }
-
       const checkingToken = checkToken(request, response)
-      if(checkingToken === false){
+      const checkingTokenCookie = checkTokenCookie(response, request)
+      if ((checkingToken === false) || checkingTokenCookie === false) {
         return response.status(400).send({
           message: 'error token'
         })
@@ -64,6 +66,15 @@ exports.deleteModel = (request, response) => {
     if (err !== null) {
       return response.status(err.status).send(err);
     }
+
+    const checkingToken = checkToken(request, response)
+    const checkingTokenCookie = checkTokenCookie(response, request)
+    if ((checkingToken === false) || checkingTokenCookie === false) {
+      return response.status(400).send({
+        message: 'error token'
+      })
+    }
+
     return response.status(200).send(result);
   });
 };
@@ -89,6 +100,15 @@ exports.updateModel = (request, response) => {
         message: `nous ne pouvons pas vous attribuer une model n° ${modelId}`
       });
     }
+
+    const checkingToken = checkToken(request, response)
+    const checkingTokenCookie = checkTokenCookie(response, request)
+    if ((checkingToken === false) || checkingTokenCookie === false) {
+      return response.status(400).send({
+        message: 'error token'
+      })
+    }
+
     return response.status(200).send(data);
   });
 };

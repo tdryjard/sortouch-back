@@ -3,8 +3,6 @@ const mail = require('../../controllers/mail/mail.controller')
 
 const router = express.Router()
 
-router.post('/create', mail.createMail)
-
 router.get('/findByUser/:userId', mail.findMailByUser)
 
 router.get('/find/:userId/:modelId/:categoryId', mail.findMailByCategory)

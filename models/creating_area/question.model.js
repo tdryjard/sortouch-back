@@ -17,25 +17,6 @@ Question.createQuestion = (newQuestion, result) => {
     })
 };
 
-Question.findQuestions = (userId, modelId, result) => {
-  db.query(
-    'SELECT * FROM question WHERE user_id = ? AND model_id = ?',
-    [userId, modelId],
-    (error, dbResult) => {
-      if (error) {
-        console.log(error)
-        return result(error, null);
-      }
-
-      if (dbResult.length) {
-        return result(null, dbResult);
-      }
-
-      return result({ kind: 'not_found' }, null);
-    }
-  );
-};
-
 Question.deleteQuestion = (questionId, userId, modelId, result) => {
   db.query('DELETE FROM question WHERE id = ? AND user_id = ? AND model_id = ?', [questionId, userId, modelId], err => {
     if (err) return result({ message: err.message, status: 500 }, null);

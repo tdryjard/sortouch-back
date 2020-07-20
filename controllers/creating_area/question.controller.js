@@ -1,55 +1,40 @@
 const Question = require('../../models/creating_area/question.model');
 const checkToken = require('../../middlewares/webToken/checkToken')
+const checkTokenCookie = require('../../middlewares/webToken/checkTokenCookie')
 
 exports.createQuestion = function createAQuestion(request, response) {
 
-    if (!request.body) {
-        return response.status(400).send({
-          message: 'Content can not be empty!'
-        });
-      }
+  if (!request.body) {
+    return response.status(400).send({
+      message: 'Content can not be empty!'
+    });
+  }
 
-    const question = new Question({
-        content: request.body.content,
-        user_id: request.body.user_id,
-        model_id: request.body.model_id
-    })
+  const question = new Question({
+    content: request.body.content,
+    user_id: request.body.user_id,
+    model_id: request.body.model_id
+  })
 
-    return Question.createQuestion(question, (error, data) => {
-        if(error){
-            return response.status(500).send({
-                message:
-                error.message || 'Some error occurred while creating the question.'
-        })
+  return Question.createQuestion(question, (error, data) => {
+    if (error) {
+      return response.status(500).send({
+        message:
+          error.message || 'Some error occurred while creating the question.'
+      })
     }
 
     const checkingToken = checkToken(request, response)
-      if(checkingToken === false){
-        return response.status(400).send({
-          message: 'error token'
-        })
-      }
+    const checkingTokenCookie = checkTokenCookie(response, request)
+    if ((checkingToken === false) || checkingTokenCookie === false) {
+      return response.status(400).send({
+        message: 'error token'
+      })
+    }
 
     return response.status(200).send(data);
-})
+  })
 }
-
-exports.findQuestions = (request, response) => {
-  Question.findQuestions(request.params.userId, request.params.modelId, (error, dbResult) => {
-    if (error !== null) {
-      if (error.kind === 'not_found') {
-        return response.status(404).send({
-          message: `Not found questions with id ${request.params.userId}.`
-        });
-      }
-      return response.status(500).send({
-        message: `Error retrieving questions with id ${request.params.userId}`
-      });
-    }
-    // Envoi de la réponse
-    return response.status(200).send(dbResult);
-  });
-};
 
 exports.deleteQuestion = (request, response) => {
   const { questionId, userId, modelId } = request.params;
@@ -59,11 +44,12 @@ exports.deleteQuestion = (request, response) => {
     }
 
     const checkingToken = checkToken(request, response)
-      if(checkingToken === false){
-        return response.status(400).send({
-          message: 'error token'
-        })
-      }
+    const checkingTokenCookie = checkTokenCookie(response, request)
+    if ((checkingToken === false) || checkingTokenCookie === false) {
+      return response.status(400).send({
+        message: 'error token'
+      })
+    }
 
     return response.status(200).send(result);
   });
@@ -77,11 +63,12 @@ exports.deleteByModel = (request, response) => {
     }
 
     const checkingToken = checkToken(request, response)
-      if(checkingToken === false){
-        return response.status(400).send({
-          message: 'error token'
-        })
-      }
+    const checkingTokenCookie = checkTokenCookie(response, request)
+    if ((checkingToken === false) || checkingTokenCookie === false) {
+      return response.status(400).send({
+        message: 'error token'
+      })
+    }
 
     return response.status(200).send(result);
   });
@@ -94,7 +81,7 @@ exports.updateQuestion = (request, response) => {
     });
   }
 
-  const {questionId, userId, modelId} = request.params
+  const { questionId, userId, modelId } = request.params
 
   return Question.updateQuestion(questionId, userId, modelId, request.body, (error, data) => {
     if (error) {
@@ -109,12 +96,13 @@ exports.updateQuestion = (request, response) => {
     }
 
     const checkingToken = checkToken(request, response)
-      if(checkingToken === false){
-        return response.status(400).send({
-          message: 'error token'
-        })
-      }
-      
+    const checkingTokenCookie = checkTokenCookie(response, request)
+    if ((checkingToken === false) || checkingTokenCookie === false) {
+      return response.status(400).send({
+        message: 'error token'
+      })
+    }
+
     return response.status(200).send(data);
   });
 };

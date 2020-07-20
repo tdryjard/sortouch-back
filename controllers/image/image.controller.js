@@ -1,5 +1,6 @@
 const Image = require('../../models/image/image.model')
 const checkToken = require('../../middlewares/webToken/checkToken')
+const checkTokenCookie = require('../../middlewares/webToken/checkTokenCookie')
 
 exports.create = function createAbase64(request, response) {
 
@@ -22,7 +23,8 @@ exports.create = function createAbase64(request, response) {
     }
 
     const checkingToken = checkToken(request, response)
-    if (checkingToken === false) {
+    const checkingTokenCookie = checkTokenCookie(response, request)
+    if ((checkingToken === false) || checkingTokenCookie === false) {
       return response.status(400).send({
         message: 'error token'
       })
@@ -73,7 +75,8 @@ exports.update = (request, response) => {
     }
 
     const checkingToken = checkToken(request, response)
-    if (checkingToken === false) {
+    const checkingTokenCookie = checkTokenCookie(response, request)
+    if ((checkingToken === false) || checkingTokenCookie === false) {
       return response.status(400).send({
         message: 'error token'
       })
@@ -89,6 +92,15 @@ exports.delete = (request, response) => {
     if (err !== null) {
       return response.status(err.status).send(err);
     }
+
+    const checkingToken = checkToken(request, response)
+    const checkingTokenCookie = checkTokenCookie(response, request)
+    if ((checkingToken === false) || checkingTokenCookie === false) {
+      return response.status(400).send({
+        message: 'error token'
+      })
+    }
+
     return response.status(200).send(result);
   });
 };

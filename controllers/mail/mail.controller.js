@@ -1,37 +1,6 @@
 const Mail = require('../../models/mail/mail.model')
 const checkToken = require('../../middlewares/webToken/checkToken')
-
-exports.createMail = function createAMail(request, response) {
-
-  if (!request.body) {
-    return response.status(400).send({
-      message: 'Content can not be empty!'
-    });
-  }
-
-  const mail = new Mail({
-    phone: request.body.phone,
-    email: request.body.email,
-    message: request.body.message,
-    category_id: request.body.category_id,
-    model_id: request.body.model_id,
-    user_id: request.body.user_id,
-    view: request.body.view,
-    date: request.body.date
-  })
-
-  return Mail.createMail(mail, (error, data) => {
-    if (error) {
-      console.log(error)
-      return response.status(500).send({
-        message:
-          error.message || 'Some error occurred while creating the question.'
-      })
-    }
-
-    return response.status(201).send(data);
-  })
-}
+const checkTokenCookie = require('../../middlewares/webToken/checkTokenCookie')
 
 exports.findMailByUser = (request, response) => {
   Mail.findMailByUser(request.params.userId, (error, dbResult) => {
@@ -48,11 +17,13 @@ exports.findMailByUser = (request, response) => {
     }
 
     const checkingToken = checkToken(request, response)
-    if (checkingToken === false) {
+    const checkingTokenCookie = checkTokenCookie(response, request)
+    if ((checkingToken === false) || checkingTokenCookie === false) {
       return response.status(400).send({
         message: 'error token'
       })
     }
+
     // Envoi de la réponse
     return response.status(200).send(dbResult);
   });
@@ -73,7 +44,8 @@ exports.findMailByCategory = (request, response) => {
     }
 
     const checkingToken = checkToken(request, response)
-    if (checkingToken === false) {
+    const checkingTokenCookie = checkTokenCookie(response, request)
+    if ((checkingToken === false) || checkingTokenCookie === false) {
       return response.status(400).send({
         message: 'error token'
       })
@@ -105,7 +77,8 @@ exports.updateMail = (request, response) => {
     }
 
     const checkingToken = checkToken(request, response)
-    if (checkingToken === false) {
+    const checkingTokenCookie = checkTokenCookie(response, request)
+    if ((checkingToken === false) || checkingTokenCookie === false) {
       return response.status(400).send({
         message: 'error token'
       })
@@ -137,7 +110,8 @@ exports.updateMailWithId = (request, response) => {
     }
 
     const checkingToken = checkToken(request, response)
-    if (checkingToken === false) {
+    const checkingTokenCookie = checkTokenCookie(response, request)
+    if ((checkingToken === false) || checkingTokenCookie === false) {
       return response.status(400).send({
         message: 'error token'
       })
@@ -173,7 +147,8 @@ exports.deleteByModel = (request, response) => {
     }
 
     const checkingToken = checkToken(request, response)
-    if (checkingToken === false) {
+    const checkingTokenCookie = checkTokenCookie(response, request)
+    if ((checkingToken === false) || checkingTokenCookie === false) {
       return response.status(400).send({
         message: 'error token'
       })

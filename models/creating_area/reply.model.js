@@ -16,25 +16,6 @@ Reply.createReply = (newReply, result) => {
     })
 };
 
-Reply.findReply = (userId, modelId, result) => {
-    db.query(
-      'SELECT * FROM response WHERE user_id = ? AND model_id = ?',
-      [userId, modelId],
-      (error, dbResult) => {
-        if (error) {
-          console.log(error)
-          return result(error, null);
-        }
-  
-        if (dbResult.length) {
-          return result(null, dbResult);
-        }
-  
-        return result({ kind: 'not_found' }, null);
-      }
-    );
-  };
-
 Reply.deleteReply = (replyId, userId, modelId, result) => {
   db.query('DELETE FROM response WHERE id = ? AND user_id = ? AND model_id = ?', [replyId, userId, modelId], err => {
     if (err){

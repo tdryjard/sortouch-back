@@ -10,31 +10,63 @@ const user = require('./register/register.route')
 const contact = require('./contact/contact.route')
 const onepage = require('./onepage/onepage.route')
 const image = require('./image/image.route')
+
+const questionChatbot = require('./creating_area/chatbot/question.route')
+const responseChatbot = require('./creating_area/chatbot/reply.route')
+const containerChatbot = require('./creating_area/chatbot/container.route')
+const relationChatbot = require('./creating_area/chatbot/relation_container.route')
+const categoryChatbot = require('./creating_area/chatbot/category.route')
+const mailChatbot = require('./mail/mail.chatbot.route')
+const contactChatbot = require('./contact/contact.chatbot.route')
+
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+const jwt = require('jsonwebtoken');
+const cookieParser = require('cookie-parser');
+const cors = require('cors');
 
 const router = express.Router();
 
-router.use('/question', question);
+router.use(cookieParser());
 
-router.use('/response', response);
+router.use('/question', cors({credentials: true, origin: process.env.ORIGIN_URL}), question);
 
-router.use('/container', container)
+router.use('/response', cors({credentials: true, origin: process.env.ORIGIN_URL}), response);
 
-router.use('/relation', relation)
+router.use('/container', cors({credentials: true, origin: process.env.ORIGIN_URL}), container)
 
-router.use('/category', category)
+router.use('/relation', cors({credentials: true, origin: process.env.ORIGIN_URL}), relation)
 
-router.use('/model', model)
+router.use('/category', cors({credentials: true, origin: process.env.ORIGIN_URL}), category)
 
-router.use('/mail', mail)
+router.use('/model', cors({credentials: true, origin: process.env.ORIGIN_URL}), model)
 
-router.use('/user', user)
+router.use('/mail', cors({credentials: true, origin: process.env.ORIGIN_URL}), mail)
 
-router.use('/contact', contact)
+router.use('/user', cors({credentials: true, origin: process.env.ORIGIN_URL}), user)
 
-router.use('/onepage', onepage)
+router.use('/contact', cors({credentials: true, origin: process.env.ORIGIN_URL}), contact)
 
-router.use('/image', image)
+router.use('/onepage', cors({credentials: true, origin: process.env.ORIGIN_URL}), onepage)
+
+router.use('/image', cors({credentials: true, origin: process.env.ORIGIN_URL}), image)
+
+// NO CORS
+
+router.use('/chatbot/question', cors({credentials: false, origin: '*'}), questionChatbot);
+
+router.use('/chatbot/response', cors({credentials: false, origin: '*'}), responseChatbot);
+
+router.use('/chatbot/container', cors({credentials: false, origin: '*'}), containerChatbot)
+
+router.use('/chatbot/relation', cors({credentials: false, origin: '*'}), relationChatbot)
+
+router.use('/chatbot/category', cors({credentials: false, origin: '*'}), categoryChatbot)
+
+router.use('/chatbot/mail', cors({credentials: false, origin: '*'}), mailChatbot)
+
+router.use('/chatbot/contact', cors({credentials: false, origin: '*'}), contactChatbot)
+
+// NO CORS
 
 router.use('/create-customer', async (req, res) => {
   // Create a new customer object
@@ -102,5 +134,15 @@ router.use('/cancel-subscription', async (req, res) => {
   );
   res.send(deletedSubscription);
 });
+
+router.use('/cookie', cors({credentials: true, origin: process.env.ORIGIN_URL}), function (req, res) {
+
+
+    // Génération du jsonWebToken
+    const token = jwt.sign('5', `${process.env.SECRET_KEY}`);
+
+    res.cookie('token', token, { maxAge: (Date.now() / 1000 + (60 * 60 * 120)), httpOnly: true});
+    res.send('cookie ok')
+})
 
 module.exports = router;

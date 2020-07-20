@@ -11,17 +11,6 @@ const Mail = function createMail(mail) {
     this.date = mail.date;
 }
 
-
-Mail.createMail = (mail, result) => {
-  db.query('INSERT INTO mail SET ?', [mail], (error, dbResult) => {
-      if (error){
-          console.log(error)
-          return result(error, null)
-      }
-      return result(null, {id: dbResult.insertId, ...mail})
-  })
-};
-
 Mail.findMailByUser = (userId, result) => {
   db.query(
     'SELECT * FROM mail WHERE user_id = ?',

@@ -1,5 +1,6 @@
 const Onepage = require('../../models/onepage/onepage.model')
 const checkToken = require('../../middlewares/webToken/checkToken')
+const checkTokenCookie = require('../../middlewares/webToken/checkTokenCookie')
 
 exports.createOnepage = function createAOnepage(request, response) {
 
@@ -24,7 +25,8 @@ exports.createOnepage = function createAOnepage(request, response) {
     }
 
     const checkingToken = checkToken(request, response)
-    if (checkingToken === false) {
+    const checkingTokenCookie = checkTokenCookie(response, request)
+    if ((checkingToken === false) || (checkingTokenCookie === false)) {
       return response.status(400).send({
         message: 'error token'
       })
@@ -92,7 +94,8 @@ exports.updateOnepage = (request, response) => {
     }
 
     const checkingToken = checkToken(request, response)
-    if (checkingToken === false) {
+    const checkingTokenCookie = checkTokenCookie(response, request)
+    if ((checkingToken === false) || checkingTokenCookie === false) {
       return response.status(400).send({
         message: 'error token'
       })
@@ -110,7 +113,8 @@ exports.deleteByModel = (request, response) => {
     }
 
     const checkingToken = checkToken(request, response)
-    if (checkingToken === false) {
+    const checkingTokenCookie = checkTokenCookie(response, request)
+    if ((checkingToken === false) || checkingTokenCookie === false) {
       return response.status(400).send({
         message: 'error token'
       })

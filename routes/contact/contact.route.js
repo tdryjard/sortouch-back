@@ -1,9 +1,8 @@
 const express = require('express');
 const contact = require('../../controllers/contact/contact.controller')
+const cors = require('cors');
 
 const router = express.Router()
-
-router.post('/create', contact.createContact)
 
 router.get('/findByUser/:userId', contact.findContactByUser)
 

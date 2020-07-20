@@ -7,6 +7,7 @@ const regexList = require('../../utils/regexList');
 const jwt = require('jsonwebtoken');
 const clearNullProperty = require('../../utils/clearNullObjectProperty');
 const checkToken = require('../../middlewares/webToken/checkToken')
+const checkTokenCookie = require('../../middlewares/webToken/checkTokenCookie')
 
 // Creer un nouvel utilisateur
 exports.create = function createUser(request, response) {
@@ -87,19 +88,32 @@ exports.connect = function userConnectToTheWebsite(request, response) {
     status,
     { text = null, errorTarget = null, alertType, data = null, token = null, inputs = null }
   ) {
-    return response.status(status).send(
-      clearNullProperty({
-        alert: {
-          type: alertType,
-          text
-        },
-        status,
-        type: errorTarget,
-        data,
-        inputs,
-        token
-      })
-    );
+    if (data) {
+      let type = data.type || null
+      let id = data.id || null
+      let partner_id = data.partner_id || null
+      let mdp_generate = data.mdp_generate || null
+      let email_generate = data.email_generate || null
+      let name_client = data.name_client || null
+      return response.status(status).send(
+        clearNullProperty({
+          alert: {
+            type: alertType,
+            text
+          },
+          status,
+          type: errorTarget,
+          type,
+          id,
+          partner_id,
+          mdp_generate,
+          email_generate,
+          name_client,
+          inputs,
+          token
+        })
+      );
+    }
   };
 
   // Verification que des entrées n'ont que des lettres
@@ -123,7 +137,7 @@ exports.connect = function userConnectToTheWebsite(request, response) {
     }
 
     // Génération du jsonWebToken
-    const token = jwt.sign({ id: data.id }, `${process.env.SECRET_KEY}`);
+    const token = jwt.sign({ id: data.id, exp: (Date.now() / 1000 + (60 * 60 * 120)) }, `${process.env.SECRET_KEY}`);
 
     return sendResponse(200, {
       text: 'Vous êtes connecté.',
@@ -164,6 +178,7 @@ exports.changeLog = function updateFirstLog(request, response) {
         message: error.message || 'Some error occurred while creating the user.'
       });
     }
+    
     // Envoi de la réponse en status 201 soit (Created)
     return response.status(201).send({
       alert: {
@@ -189,7 +204,8 @@ exports.update = (request, response) => {
   }
   else {
     const checkingToken = checkToken(request, response)
-    if (checkingToken === false) {
+    const checkingTokenCookie = checkTokenCookie(response, request)
+    if ((checkingToken === false) || checkingTokenCookie === false) {
       return response.status(400).send({
         message: 'error token'
       })
@@ -207,7 +223,6 @@ exports.update = (request, response) => {
         message: `Problème connexion à la base de donnée, veuillez nous contacter en cas de problèmes`
       });
     }
-
 
     return response.status(200).send(request.body);
   });
@@ -227,11 +242,13 @@ exports.find = (request, response) => {
     }
 
     const checkingToken = checkToken(request, response)
-    if (checkingToken === false) {
+    const checkingTokenCookie = checkTokenCookie(response, request)
+    if ((checkingToken === false) || checkingTokenCookie === false) {
       return response.status(400).send({
         message: 'error token'
       })
     }
+
     // Envoi de la réponse
     return response.status(200).send(dbResult);
   });
@@ -251,11 +268,13 @@ exports.findToPartner = (request, response) => {
     }
 
     const checkingToken = checkToken(request, response)
-    if (checkingToken === false) {
+    const checkingTokenCookie = checkTokenCookie(response, request)
+    if ((checkingToken === false) || checkingTokenCookie === false) {
       return response.status(400).send({
         message: 'error token'
       })
     }
+
     // Envoi de la réponse
     return response.status(200).send(dbResult);
   });
@@ -278,6 +297,15 @@ exports.findByEmail = (request, response) => {
         message: 'error token'
       })
     }
+
+    const checkingToken = checkToken(request, response)
+    const checkingTokenCookie = checkTokenCookie(response, request)
+    if ((checkingToken === false) || checkingTokenCookie === false) {
+      return response.status(400).send({
+        message: 'error token'
+      })
+    }
+
     // Envoi de la réponse
     return response.status(200).send(dbResult);
   });

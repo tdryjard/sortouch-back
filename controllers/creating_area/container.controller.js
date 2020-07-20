@@ -1,5 +1,6 @@
 const Container = require('../../models/creating_area/container.model');
 const checkToken = require('../../middlewares/webToken/checkToken')
+const checkTokenCookie = require('../../middlewares/webToken/checkTokenCookie')
 
 exports.createContainer = function createAContainer(request, response) {
 
@@ -37,43 +38,6 @@ exports.createContainer = function createAContainer(request, response) {
 })
 }
 
-exports.findContainers = (request, response) => {
-  return Container.findContainers(request.params.userId, request.params.responseId, request.params.modelId, (error, dbResult) => {
-      if (error !== null) {
-        if (error.kind === 'not_found') {
-          return response.status(404).send({
-            message: `Not found containers with id ${request.params.userId}.`
-          });
-        }
-        return response.status(500).send({
-          message: `Error retrieving containers with id ${request.params.userId}`
-        });
-      }
-      return response.status(200).send(dbResult);
-    });
-  };
-
-exports.findChatBot = (request, response) => {
-  const {query} = request
-  if(query.userId && query.modelId){
-    return Container.findChatbot(query.modelId, query.userId, query.responseId, (error, dbResult) => {
-      if (error) {
-        if (error.kind === 'not_found') {
-          response.status(404).send({
-            message: `Not found order with id ${query.userId}.`
-          });
-        } else {
-          response.status(500).send({
-            message: `Error retrieving order with id ${query.userId}`
-          });
-        }
-      } else {
-        response.send(dbResult);
-      }
-    })
-  }
-}
-
 exports.updateContainerOrder = (request, response) => {
   if (!request.body) {
     response.status(400).send({
@@ -96,11 +60,12 @@ exports.updateContainerOrder = (request, response) => {
     }
 
     const checkingToken = checkToken(request, response)
-      if(checkingToken === false){
-        return response.status(400).send({
-          message: 'error token'
-        })
-      }
+    const checkingTokenCookie = checkTokenCookie(response, request)
+    if ((checkingToken === false) || checkingTokenCookie === false) {
+      return response.status(400).send({
+        message: 'error token'
+      })
+    }
 
     return response.status(200).send(data);
   });
@@ -114,11 +79,12 @@ exports.deleteContainerRelationResponse = (request, response) => {
     }
 
     const checkingToken = checkToken(request, response)
-      if(checkingToken === false){
-        return response.status(400).send({
-          message: 'error token'
-        })
-      }
+    const checkingTokenCookie = checkTokenCookie(response, request)
+    if ((checkingToken === false) || checkingTokenCookie === false) {
+      return response.status(400).send({
+        message: 'error token'
+      })
+    }
 
     return response.status(200).send(result);
   });
@@ -130,14 +96,14 @@ exports.deleteContainer = (request, response) => {
     if (err !== null) {
       return response.status(err.status).send(err);
     }
-    console.log(err)
 
     const checkingToken = checkToken(request, response)
-      if(checkingToken === false){
-        return response.status(400).send({
-          message: 'error token'
-        })
-      }
+    const checkingTokenCookie = checkTokenCookie(response, request)
+    if ((checkingToken === false) || checkingTokenCookie === false) {
+      return response.status(400).send({
+        message: 'error token'
+      })
+    }
       
     return response.status(200).send(result);
   });
@@ -151,8 +117,9 @@ exports.deleteByModel = (request, response) => {
       return response.status(err.status).send(err);
     }
 
-    const checkingToken = checkToken(request, response)
-      if(checkingToken === false){
+      const checkingToken = checkToken(request, response)
+      const checkingTokenCookie = checkTokenCookie(response, request)
+      if ((checkingToken === false) || checkingTokenCookie === false) {
         return response.status(400).send({
           message: 'error token'
         })
