@@ -3,13 +3,10 @@ require('dotenv').config();
 const bodyParser = require('body-parser');
 const api = require('./routes');
 const cookieParser = require('cookie-parser');
-const cors = require('cors');
 
 const port = process.env.PORT || 8000
 
 app.use(cookieParser());
-
-app.use(cors())
 
 app.use(bodyParser.json({
     limit: '5mb'

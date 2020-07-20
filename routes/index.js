@@ -52,6 +52,8 @@ router.use('/image', cors({credentials: true, origin: process.env.ORIGIN_URL}), 
 
 // NO CORS
 
+router.use('/chatbot', cors())
+
 router.use('/chatbot/question', cors({credentials: false, origin: '*'}), questionChatbot);
 
 router.use('/chatbot/response', cors({credentials: false, origin: '*'}), responseChatbot);
