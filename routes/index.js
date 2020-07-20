@@ -52,19 +52,19 @@ router.use('/image', cors({credentials: true, origin: process.env.ORIGIN_URL}), 
 
 // NO CORS
 
-router.use('/chatbot/question', cors({credentials: false, origin: '*'}), questionChatbot);
+router.use('/chatbot/question', cors({credentials: false, origin: process.env.ORIGIN_URL}), questionChatbot);
 
-router.use('/chatbot/response', cors({credentials: false, origin: '*'}), responseChatbot);
+router.use('/chatbot/response', cors({credentials: false, origin: process.env.ORIGIN_URL}), responseChatbot);
 
-router.use('/chatbot/container', cors({credentials: false, origin: '*'}), containerChatbot)
+router.use('/chatbot/container', cors({credentials: false, origin: process.env.ORIGIN_URL}), containerChatbot)
 
-router.use('/chatbot/relation', cors({credentials: false, origin: '*'}), relationChatbot)
+router.use('/chatbot/relation', cors({credentials: false, origin: process.env.ORIGIN_URL}), relationChatbot)
 
-router.use('/chatbot/category', cors({credentials: false, origin: '*'}), categoryChatbot)
+router.use('/chatbot/category', cors({credentials: false, origin: process.env.ORIGIN_URL}), categoryChatbot)
 
-router.use('/chatbot/mail', cors({credentials: false, origin: '*'}), mailChatbot)
+router.use('/chatbot/mail', cors({credentials: false, origin: process.env.ORIGIN_URL}), mailChatbot)
 
-router.use('/chatbot/contact', cors({credentials: false, origin: '*'}), contactChatbot)
+router.use('/chatbot/contact', cors({credentials: false, origin: process.env.ORIGIN_URL}), contactChatbot)
 
 // NO CORS
 
