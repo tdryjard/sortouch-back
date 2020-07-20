@@ -1,12 +1,12 @@
 const app = require('express')();
 require('dotenv').config();
 const bodyParser = require('body-parser');
-const cors = require('cors');
 const api = require('./routes');
+const cookieParser = require('cookie-parser');
 
-const port = process.env.PORT || 8080
+const port = process.env.PORT || 8000
 
-app.use(cors('https://sortouch.co/'))
+app.use(cookieParser());
 
 app.use(bodyParser.json({
     limit: '5mb'
