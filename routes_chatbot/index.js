@@ -1,10 +1,13 @@
-import questionChatbot from './creating_area/question.route'
-import responseChatbot from './creating_area/reply.route'
-import containerChatbot from './creating_area/container.route'
-import relationChatbot from './creating_area/relation_container.route'
-import categoryChatbot from './creating_area/category.route'
-import mailChatbot from './mail.chatbot.route'
-import contactChatbot from './contact.chatbot.route'
+const express = require('express');
+const questionChatbot = require('./creating_area/question.route')
+const responseChatbot = require('./creating_area/reply.route')
+const containerChatbot = require('./creating_area/container.route')
+const relationChatbot = require('./creating_area/relation_container.route')
+const categoryChatbot = require('./creating_area/category.route')
+const mailChatbot = require('./mail.chatbot.route')
+const contactChatbot = require('./contact.chatbot.route')
+
+const router = express.Router();
 
 const cors = require('cors');
 
@@ -25,3 +28,5 @@ router.use('/mail', cors({credentials: false, origin: '*'}), mailChatbot)
 router.use('/contact', cors({credentials: false, origin: '*'}), contactChatbot)
 
 // NO CORS
+
+module.exports = router;

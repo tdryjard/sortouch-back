@@ -1,5 +1,5 @@
 const express = require('express');
-const relation = require('../../../controllers/creating_area/chatbot/relation_container.controller');
+const relation = require('../../controllers/creating_area/chatbot/relation_container.controller');
 
 const router = express.Router()
 

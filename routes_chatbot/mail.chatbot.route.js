@@ -1,5 +1,5 @@
 const express = require('express');
-const mail = require('../../controllers/mail/mail.chatbot.controller')
+const mail = require('../controllers/mail/mail.chatbot.controller')
 
 const router = express.Router()
 

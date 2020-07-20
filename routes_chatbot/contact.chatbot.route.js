@@ -1,5 +1,5 @@
 const express = require('express');
-const contact = require('../../controllers/contact/contact.chatbot.controller')
+const contact = require('../controllers/contact/contact.chatbot.controller')
 
 const router = express.Router()
 

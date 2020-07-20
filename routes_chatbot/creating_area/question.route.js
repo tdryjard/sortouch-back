@@ -1,5 +1,5 @@
 const express = require('express');
-const question = require('../../../controllers/creating_area/chatbot/question.controller');
+const question = require('../../controllers/creating_area/chatbot/question.controller');
 
 const router = express.Router()
 
