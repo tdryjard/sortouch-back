@@ -16,7 +16,7 @@ exports.findContactByUser = (request, response) => {
     }
 
     const checkingToken = checkToken(request, response)
-    const checkingTokenCookie = await checkTokenCookie(response, request)
+    const checkingTokenCookie = checkTokenCookie(response, request)
     if ((checkingToken === false) || checkingTokenCookie === false) {
       return response.status(400).send({
         message: 'error token'
